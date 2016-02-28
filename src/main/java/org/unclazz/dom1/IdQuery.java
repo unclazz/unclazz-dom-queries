@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-public class IdQuery implements Query<ElementNode> {
+class IdQuery implements Query<ElementNode> {
 	private final String id;
 	IdQuery(final String id) {
 		this.id = id;

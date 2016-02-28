@@ -5,7 +5,7 @@ import org.w3c.dom.Attr;
 /**
  * {@link Attr}のためのラッパー.
  */
-public interface AttributeNode extends NodeKind, HasNodeValue {
+public interface AttributeNode extends NodeKind {
 	/**
 	 * {@link Attr#getName()}を呼び出す.
 	 * @return 属性名
@@ -21,4 +21,5 @@ public interface AttributeNode extends NodeKind, HasNodeValue {
 	 * @return 明示的に指定されてる場合{@code true}
 	 */
 	boolean isSpecified();
+	public String getValue();
 }

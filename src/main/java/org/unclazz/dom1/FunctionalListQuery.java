@@ -71,7 +71,7 @@ public abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 			}
 			@Override
 			public Function<A, C> function() {
-				return BiFunction.synthesize(base.function(), g);
+				return SyntheticFunction.synthesize(base.function(), g);
 			}
 		};
 	}

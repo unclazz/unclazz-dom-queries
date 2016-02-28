@@ -7,7 +7,7 @@ import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class DescendantsQuery extends ChildrenQuery {
+class DescendantsQuery extends RelativeNodesQuery {
 	DescendantsQuery() {}
 	
 	@Override

@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
 /**
  * 祖先要素の問合せを行うためのクエリ.
  */
-public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {
+class AncestorsQuery extends RelativeNodesQuery {
 	AncestorsQuery() {}
 	
 	private TagListQuery tag = null;
@@ -47,17 +47,4 @@ public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {
 		}
 		return Collections.emptyList();
 	}
-
-	@Override
-	protected Function<Node, BranchNode> function() {
-		return Functions.node2TreeStructuredNode.and(treeStructuredNode2BranchNode);
-	}
-	
-	private static final UniFunction<TreeStructuredNode, BranchNode> treeStructuredNode2BranchNode =
-			new UniFunction<TreeStructuredNode, BranchNode>() {
-		@Override
-		public BranchNode apply(TreeStructuredNode target) {
-			return target instanceof BranchNode ? (BranchNode) target : null;
-		}
-	};
 }

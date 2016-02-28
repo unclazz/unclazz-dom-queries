@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ClassesQuery implements ListQuery<String> {
+class ClassesQuery implements ListQuery<String> {
 	ClassesQuery() {}
 	
 	@Override

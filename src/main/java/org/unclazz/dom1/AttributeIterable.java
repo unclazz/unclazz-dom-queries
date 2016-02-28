@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
  * そしてこの{@link AttributeIterable}は{@link NamedNodeMap}の要素型の事前チェックを行わない。
  * したがって{@link Iterator}を使用したイテレート処理中に実行時例外がスローされる可能性がある。</p>
  */
-public class AttributeIterable implements Iterable<Attr> {
+class AttributeIterable implements Iterable<Attr> {
 	/**
 	 * {@link NamedNodeMap}をラップする.
 	 * @param nodeMap ラップする対象

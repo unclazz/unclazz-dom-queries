@@ -1,5 +1,7 @@
 package org.unclazz.dom1;
 
+import java.util.List;
+
 import org.w3c.dom.Text;
 
 /**
@@ -12,21 +14,21 @@ public final class Queries {
 	 * XMLノードの子要素にアクセスするためのクエリ.
 	 * <p>このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final ChildrenQuery children = new ChildrenQuery();
+	public static final RelativeNodesQuery children = new ChildrenQuery();
 	/**
 	 * XMLノードの子孫要素にアクセスするためのクエリ.
 	 * <p>このクエリ・オブジェクトを使った問合せの結果返されるリストの要素の順序は、
 	 * 原則としてXMLの木構造を深さ優先で探索した結果の順序となる。
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final DescendantsQuery descendants = new DescendantsQuery();
+	public static final RelativeNodesQuery descendants = new DescendantsQuery();
 	/**
 	 * XMLノードの祖先要素にアクセスするためのクエリ.
 	 * <p>このクエリ・オブジェクトを使った問合せの結果返されるリストの要素の順序は、原則として親→祖父→曽祖父という順序となる。
 	 * 通常リストの最後の要素は{@link DocumentNode}となる。
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final AncestorsQuery ancestors = new AncestorsQuery();
+	public static final RelativeNodesQuery ancestors = new AncestorsQuery();
 	/**
 	 * XMLノードの属性情報にアクセスするためのクエリ.
 	 * <p>このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
@@ -38,14 +40,14 @@ public final class Queries {
 	 * リストの先頭の要素は起点となるノードにもっとも近接したノードとなる。
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final SiblingsQuery prevs = new SiblingsQuery(true);
+	public static final RelativeNodesQuery prevs = new SiblingsQuery(true);
 	/**
 	 * XMLノードの兄弟要素にアクセスするためのクエリ.
 	 * <p>このクエリ・オブジェクトを使った問合せの結果返されるリストの要素の順序は、起点となるノードとの近接度で決まる。
 	 * リストの先頭の要素は起点となるノードにもっとも近接したノードとなる。
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final SiblingsQuery nexts = new SiblingsQuery(false);
+	public static final RelativeNodesQuery nexts = new SiblingsQuery(false);
 	/**
 	 * XMLノードの子孫要素をid属性値で問い合わせるためのクエリ.
 	 * <p>起点となる要素の子孫要素のなかに該当する要素が見つからなかった場合このクエリは{@code null}を返す。
@@ -69,7 +71,7 @@ public final class Queries {
 	}
 	/**
 	 * XMLノードのclass属性を取得するためのクエリ.
-	 * <p>class属性が指定されていない場合は空の{@like List}を返す。</p>
+	 * <p>class属性が指定されていない場合は空の{@link List}を返す。</p>
 	 */
 	public static final ListQuery<String> classes = new ClassesQuery();
 	/**

@@ -1,3 +1,5 @@
 package org.unclazz.dom1;
 
-public interface CDATASectionNode extends NodeKind, HasNodeValue {}
+public interface CDATASectionNode extends NodeKind {
+	String getValue();
+}

@@ -34,7 +34,7 @@ public class Sample {
 //		
 		for (final ElementNode en : dn
 				.query(children.tag("sample").one())
-				.query(children.tag().className("class1"))) {
+				.query(ancestors.tag().className("class1"))) {
 			System.out.println(en);
 		}
 	}

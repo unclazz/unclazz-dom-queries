@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 /**
  * {@link NodeList}をラップする{@link Iterable}オブジェクト.
  */
-public class NodeIterable implements Iterable<Node> {
+class NodeIterable implements Iterable<Node> {
 	/**
 	 * {@link NodeList}をラップする.
 	 * @param nodeList ラップ対象
