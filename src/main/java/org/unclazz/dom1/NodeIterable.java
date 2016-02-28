@@ -5,7 +5,15 @@ import java.util.Iterator;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * {@link NodeList}をラップする{@link Iterable}オブジェクト.
+ */
 public class NodeIterable implements Iterable<Node> {
+	/**
+	 * {@link NodeList}をラップする.
+	 * @param nodeList ラップ対象
+	 * @return インスタンス
+	 */
 	public static NodeIterable wrap(final NodeList nodeList) {
 		return new NodeIterable(nodeList);
 	}
@@ -36,5 +44,4 @@ public class NodeIterable implements Iterable<Node> {
 			public void remove() {}
 		};
 	}
-
 }

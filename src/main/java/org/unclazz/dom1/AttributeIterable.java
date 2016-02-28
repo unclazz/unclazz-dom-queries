@@ -6,9 +6,20 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+/**
+ * {@link Attr}を要素とする{@link NamedNodeMap}をラップする{@link Iterable}オブジェクト.
+ * <p>{@link NamedNodeMap}には要素型の制約付けを行う仕組みがない。
+ * そしてこの{@link AttributeIterable}は{@link NamedNodeMap}の要素型の事前チェックを行わない。
+ * したがって{@link Iterator}を使用したイテレート処理中に実行時例外がスローされる可能性がある。</p>
+ */
 public class AttributeIterable implements Iterable<Attr> {
-	public static AttributeIterable wrap(final NamedNodeMap nodeList) {
-		return new AttributeIterable(nodeList);
+	/**
+	 * {@link NamedNodeMap}をラップする.
+	 * @param nodeMap ラップする対象
+	 * @return インスタンス
+	 */
+	public static AttributeIterable wrap(final NamedNodeMap nodeMap) {
+		return new AttributeIterable(nodeMap);
 	}
 	
 	private final NamedNodeMap nodeList;
@@ -26,7 +37,6 @@ public class AttributeIterable implements Iterable<Attr> {
 			public boolean hasNext() {
 				return i < j;
 			}
-
 			@Override
 			public Attr next() {
 				final Node n = nodeList.item(i ++);
@@ -38,10 +48,8 @@ public class AttributeIterable implements Iterable<Attr> {
 							NodeType.ATTRIBUTE, NodeType.valueOf(n.getNodeType())));
 				}
 			}
-			
 			@Override
 			public void remove() {}
 		};
 	}
-
 }

@@ -2,6 +2,10 @@ package org.unclazz.dom1;
 
 import org.w3c.dom.Node;
 
+/**
+ * ノード種別.
+ * <p>この列挙型は{@link Node#getNodeType()}が返す{@code short}値に対応するインスタンスを持つ。</p>
+ */
 public enum NodeType {
 	DOCUMENT(Node.DOCUMENT_NODE),
 	DOCUMENT_FRAGMENT(Node.DOCUMENT_FRAGMENT_NODE),
@@ -21,10 +25,19 @@ public enum NodeType {
 		this.nodeTypeValue = val;
 	}
 	
+	/**
+	 * {@link Node#getNodeType()}が返す{@code short}値を返す.
+	 * @return {@code short}値
+	 */
 	public short getShortValue() {
 		return nodeTypeValue;
 	}
 	
+	/**
+	 * {@link Node#getNodeType()}が返す{@code short}値に対応するインスタンスを返す.
+	 * @return {@code short}値
+	 * @throws IllegalArgumentException 対応する値が見つからない場合
+	 */
 	public static NodeType valueOf(short val) {
 		for (final NodeType t : values()) {
 			if (t.nodeTypeValue == val) {

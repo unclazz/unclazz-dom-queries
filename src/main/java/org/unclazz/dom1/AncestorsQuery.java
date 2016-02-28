@@ -13,14 +13,13 @@ public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {
 
 	public TagListQuery tag() {
 		if (tag == null) {
-			tag = new TagListQuery(this.and(Functions.branchNode2ElementNode));
+			tag = new TagListQuery(this);
 		}
 		return tag;
 	}
 
 	public TagListQuery tag(String name) {
-		return new TagListQuery(this.and(Functions.branchNode2ElementNode
-				.and(Functions.tagNameEquals(name))));
+		return new TagListQuery(this, name);
 	}
 	
 	@Override
@@ -40,6 +39,14 @@ public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {
 
 	@Override
 	protected Function<Node, BranchNode> function() {
-		return Functions.node2TreeStructuredNode.and(Functions.treeStructuredNode2BranchNode);
+		return Functions.node2TreeStructuredNode.and(treeStructuredNode2BranchNode);
 	}
+	
+	private static final UniFunction<TreeStructuredNode, BranchNode> treeStructuredNode2BranchNode =
+			new UniFunction<TreeStructuredNode, BranchNode>() {
+		@Override
+		public BranchNode apply(TreeStructuredNode target) {
+			return target instanceof BranchNode ? (BranchNode) target : null;
+		}
+	};
 }
