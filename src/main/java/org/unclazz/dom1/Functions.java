@@ -1,5 +1,6 @@
 package org.unclazz.dom1;
 
+import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
@@ -15,6 +16,16 @@ public final class Functions {
 		return new Function<A, Void>() {
 			@Override
 			public Void apply(A target) {
+				return null;
+			}
+		};
+	}
+	
+	public static<A> Function<A, Void> forEach(final Runnable r) {
+		return new Function<A, Void>() {
+			@Override
+			public Void apply(A target) {
+				r.run();
 				return null;
 			}
 		};

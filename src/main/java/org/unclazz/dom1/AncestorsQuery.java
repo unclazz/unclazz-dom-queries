@@ -3,6 +3,7 @@ package org.unclazz.dom1;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.Node;
 
 public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {

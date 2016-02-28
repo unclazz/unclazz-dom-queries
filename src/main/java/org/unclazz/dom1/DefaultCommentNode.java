@@ -1,5 +1,6 @@
 package org.unclazz.dom1;
 
+import org.unclazz.dom1.TreeStructuredNode.LeafNode;
 import org.w3c.dom.Comment;
 
 class DefaultCommentNode implements CommentNode, LeafNode {

@@ -2,6 +2,7 @@ package org.unclazz.dom1;
 
 import java.util.Collections;
 
+import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.Node;
 
 class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {

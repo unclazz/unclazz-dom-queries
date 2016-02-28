@@ -3,11 +3,11 @@ package org.unclazz.dom1.sample;
 import java.io.File;
 import java.io.IOException;
 
-import org.unclazz.dom1.BranchNode;
 import org.unclazz.dom1.DocumentNode;
 import org.unclazz.dom1.DocumentNodes;
 import org.unclazz.dom1.ElementNode;
 import org.unclazz.dom1.Queries;
+import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.xml.sax.SAXException;
 
 public class Sample {
