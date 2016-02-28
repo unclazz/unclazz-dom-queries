@@ -74,4 +74,9 @@ class DefaultTextNode implements TextNode, LeafNode {
 	public Node getWrappedNode() {
 		return inner;
 	}
+	
+	@Override
+	public String toString() {
+		return "TextNode()";
+	}
 }

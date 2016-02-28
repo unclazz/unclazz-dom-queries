@@ -85,4 +85,9 @@ class DefaultDocumentFragmentNode implements DocumentFragmentNode {
 	public boolean isBranch() {
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return "DocumentFragment()";
+	}
 }

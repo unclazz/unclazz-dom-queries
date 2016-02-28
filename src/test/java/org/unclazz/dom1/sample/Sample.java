@@ -18,13 +18,14 @@ public class Sample {
 	public static void main(String[] args) throws SAXException, IOException {
 		final DocumentNode dn = DocumentNodes.from(new File("src/test/resources/sample.xml"));
 		final ElementNode foo1 = dn.query(descendents.tag("foo").one());
+		final ElementNode bar1 = dn.query(descendents.tag("bar").one());
 		
 //		for (final AttributeNode en : foo1.query(attributes.specified(true))) {
 //			System.out.println("> " + en.getName());
 //		}
 		
-		for (final TreeStructuredNode en : foo1.query(nexts.tag())) {
-			System.out.println(en.getNodeType());
+		for (final TreeStructuredNode en : bar1.query(ancestors)) {
+			System.out.println(en);
 		}
 	}
 

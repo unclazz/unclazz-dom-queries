@@ -69,4 +69,9 @@ class DefaultCommentNode implements CommentNode, LeafNode {
 	public boolean hasNextSibling() {
 		return inner.getNextSibling() != null;
 	}
+	
+	@Override
+	public String toString() {
+		return "CommentNode(<!-- ... -->)";
+	}
 }

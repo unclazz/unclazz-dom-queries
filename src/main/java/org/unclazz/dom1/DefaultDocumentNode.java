@@ -126,4 +126,9 @@ class DefaultDocumentNode implements DocumentNode {
 	public boolean isBranch() {
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return "DocumentNode()";
+	}
 }

@@ -145,4 +145,13 @@ class DefaultElementNode implements ElementNode {
 	public boolean hasAttribute(String name) {
 		return inner.hasAttribute(name);
 	}
+	
+	@Override
+	public String toString() {
+		final StringBuilder buff = new StringBuilder();
+		buff.append("ElementNode(<")
+		.append(getTagName())
+		.append(">)");
+		return buff.toString();
+	}
 }
