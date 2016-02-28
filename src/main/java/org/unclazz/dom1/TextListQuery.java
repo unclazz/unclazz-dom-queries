@@ -18,7 +18,7 @@ public class TextListQuery extends FunctionalListQuery<Node, TextNode> {
 	
 	private final FunctionalListQuery<Node, TextNode> inner;
 	
-	TextListQuery(final ChildrenQuery childrenQuery) {
+	TextListQuery(final FunctionalListQuery<Node, TreeStructuredNode> childrenQuery) {
 		this.inner = childrenQuery.and(treeStructureNode2TextNode);
 	}
 
