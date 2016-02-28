@@ -4,8 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
-	public abstract Iterable<A> source(UZNode n);
-	public abstract Function<A,B> function();
+	protected abstract Iterable<A> source(UZNode n);
+	protected abstract Function<A,B> function();
+	
+	public Query<B> one() {
+		final ListQuery<B> base = this;
+		return new Query<B>() {
+
+			@Override
+			public B queryFrom(UZNode n) {
+				final List<B> one = base.queryFrom(n);
+				return one.isEmpty() ? null : one.get(0);
+			}
+		};
+	}
 	
 	@Override
 	public List<B> queryFrom(UZNode n) {

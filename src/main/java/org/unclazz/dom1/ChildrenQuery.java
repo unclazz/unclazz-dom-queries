@@ -7,21 +7,26 @@ import org.w3c.dom.Node;
 class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	ChildrenQuery() {}
 	
-	private FunctionalListQuery<Node, ElementNode> tag = null;
+	private TagListQuery tag = null;
 
-	public FunctionalListQuery<Node, ElementNode> tag() {
+	public TagListQuery tag() {
 		if (tag == null) {
-			tag = this.and(Functions.treeStructuredNode2ElementNode);
+			tag = new TagListQuery(this.and(Functions.treeStructuredNode2ElementNode));
 		}
 		return tag;
 	}
 
-	public FunctionalListQuery<Node, ElementNode> tag(String name) {
-		return tag().and(Functions.tagNameEquals(name));
+	public TagListQuery tag(String name) {
+		return new TagListQuery(this.and(Functions.treeStructuredNode2ElementNode
+				.and(Functions.tagNameEquals(name))));
 	}
-
+	
+	public TextListQuery text() {
+		return new TextListQuery(this.and(Functions.treeStructuredNode2TextNode));
+	}
+	
 	@Override
-	public Iterable<Node> source(UZNode n) {
+	protected Iterable<Node> source(UZNode n) {
 		if (n instanceof BranchNode) {
 			final BranchNode b = (BranchNode) n;
 			return NodeIterable.wrap(b.getWrappedNode().getChildNodes());
@@ -30,7 +35,7 @@ class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	}
 
 	@Override
-	public Function<Node, TreeStructuredNode> function() {
+	protected Function<Node, TreeStructuredNode> function() {
 		return Functions.node2TreeStructuredNode;
 	}
 }

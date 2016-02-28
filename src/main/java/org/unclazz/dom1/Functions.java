@@ -64,11 +64,43 @@ public final class Functions {
 		}
 	};
 	
+	public static final UniFunction<UZNode, TextNode> uzNode2TextNode =
+			new UniFunction<UZNode, TextNode>() {
+		@Override
+		public TextNode apply(UZNode target) {
+			return target instanceof TextNode ? (TextNode) target : null;
+		}
+	};
+	
+	public static final UniFunction<BranchNode, ElementNode> branchNode2ElementNode =
+			new UniFunction<BranchNode, ElementNode>() {
+		@Override
+		public ElementNode apply(BranchNode target) {
+			return target instanceof ElementNode ? (ElementNode) target : null;
+		}
+	};
+	
 	public static final UniFunction<TreeStructuredNode, ElementNode> treeStructuredNode2ElementNode =
 			new UniFunction<TreeStructuredNode, ElementNode>() {
 		@Override
 		public ElementNode apply(TreeStructuredNode target) {
 			return target instanceof ElementNode ? (ElementNode) target : null;
+		}
+	};
+	
+	public static final UniFunction<TreeStructuredNode, BranchNode> treeStructuredNode2BranchNode =
+			new UniFunction<TreeStructuredNode, BranchNode>() {
+		@Override
+		public BranchNode apply(TreeStructuredNode target) {
+			return target instanceof BranchNode ? (BranchNode) target : null;
+		}
+	};
+	
+	public static final UniFunction<TreeStructuredNode, TextNode> treeStructuredNode2TextNode =
+			new UniFunction<TreeStructuredNode, TextNode>() {
+		@Override
+		public TextNode apply(TreeStructuredNode target) {
+			return target instanceof TextNode ? (TextNode) target : null;
 		}
 	};
 	

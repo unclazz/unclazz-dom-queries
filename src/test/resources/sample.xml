@@ -6,5 +6,5 @@
 		<bar id="bar1" attr1="attr1-value"></bar>
 		baz
 	</foo>
-	<not-foo>not-foo</not-foo>
+	<not-foo id="not-foo0">not-foo</not-foo>
 </sample>
