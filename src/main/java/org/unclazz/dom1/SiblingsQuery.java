@@ -8,7 +8,7 @@ import org.w3c.dom.Node;
 /**
  * 兄弟要素の問合せを行うためのクエリ.
  */
-class SiblingsQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
+public class SiblingsQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	SiblingsQuery(boolean previous) { this.previous = previous; }
 	
 	private final boolean previous;
@@ -61,7 +61,7 @@ class SiblingsQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	private static void collectSiblings(final Node base, 
 			final boolean previous, final LinkedList<Node> result) {
 		Node curr = base;
-		while ((curr = (previous ? base.getPreviousSibling() : base.getNextSibling())) != null) {
+		while ((curr = (previous ? curr.getPreviousSibling() : curr.getNextSibling())) != null) {
 			result.addLast(curr);
 		}
 	}

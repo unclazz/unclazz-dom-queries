@@ -36,12 +36,12 @@ public final class Queries {
 	 * リストの先頭の要素は起点となるノードにもっとも近接したノードとなる。
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final SiblingsQuery previouSiblings = new SiblingsQuery(true);
+	public static final SiblingsQuery prevs = new SiblingsQuery(true);
 	/**
 	 * XMLノードの兄弟要素にアクセスするためのクエリ.
 	 * <p>このクエリ・オブジェクトを使った問合せの結果返されるリストの要素の順序は、起点となるノードとの近接度で決まる。
 	 * リストの先頭の要素は起点となるノードにもっとも近接したノードとなる。
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
-	public static final SiblingsQuery nextSiblings = new SiblingsQuery(true);
+	public static final SiblingsQuery nexts = new SiblingsQuery(false);
 }
