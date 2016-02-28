@@ -3,6 +3,7 @@ package org.unclazz.dom1;
 import java.util.List;
 
 import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Node;
 
 class DefaultDocumentFragmentNode implements DocumentFragmentNode {
 	private final DocumentFragment inner;
@@ -66,7 +67,7 @@ class DefaultDocumentFragmentNode implements DocumentFragmentNode {
 	}
 
 	@Override
-	public DocumentFragment getWrappedNode() {
+	public Node getWrappedNode() {
 		return inner;
 	}
 

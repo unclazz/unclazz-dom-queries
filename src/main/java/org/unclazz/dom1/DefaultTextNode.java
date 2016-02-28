@@ -1,9 +1,10 @@
 package org.unclazz.dom1;
 
 import org.unclazz.dom1.TreeStructuredNode.LeafNode;
+import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
-class DefaultTextNode implements TextNode, LeafNode, NodeWrapper<Text> {
+class DefaultTextNode implements TextNode, LeafNode {
 	private final Text inner;
 	DefaultTextNode(final Text inner) {
 		this.inner = inner;
@@ -70,8 +71,7 @@ class DefaultTextNode implements TextNode, LeafNode, NodeWrapper<Text> {
 	}
 
 	@Override
-	public Text getWrappedNode() {
+	public Node getWrappedNode() {
 		return inner;
 	}
-
 }

@@ -1,5 +1,5 @@
 package org.unclazz.dom1;
 
-public interface HasNodeValue extends Nodal {
+public interface HasNodeValue extends NodeKind {
 	String getValue();
 }

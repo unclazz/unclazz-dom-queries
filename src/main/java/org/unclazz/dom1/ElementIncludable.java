@@ -3,7 +3,7 @@ package org.unclazz.dom1;
 import java.util.List;
 
 /**
- * {@link #getElementsByTagName(String)}メソッドを持つ{@link Nodal}のサブインタフェース.
+ * {@link #getElementsByTagName(String)}メソッドを持つ{@link NodeKind}のサブインタフェース.
  */
 public interface ElementIncludable extends NodeIncludable {
 	/**

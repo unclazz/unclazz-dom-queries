@@ -11,7 +11,7 @@ public class DescendantsQuery extends ChildrenQuery {
 	DescendantsQuery() {}
 	
 	@Override
-	public Iterable<Node> source(Nodal n) {
+	public Iterable<Node> source(NodeKind n) {
 		if (n instanceof BranchNode) {
 			final LinkedList<Node> descendants = new LinkedList<Node>();
 			collectDeschendants(n.getWrappedNode(), descendants);

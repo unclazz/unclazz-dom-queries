@@ -35,7 +35,8 @@ public enum NodeType {
 	
 	/**
 	 * {@link Node#getNodeType()}が返す{@code short}値に対応するインスタンスを返す.
-	 * @return {@code short}値
+	 * @param val {@code short}値
+	 * @return 列挙型のインスタンス
 	 * @throws IllegalArgumentException 対応する値が見つからない場合
 	 */
 	public static NodeType valueOf(short val) {

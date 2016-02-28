@@ -44,7 +44,7 @@ class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	}
 	
 	@Override
-	protected Iterable<Node> source(Nodal n) {
+	protected Iterable<Node> source(NodeKind n) {
 		if (n instanceof BranchNode) {
 			return NodeIterable.wrap(n.getWrappedNode().getChildNodes());
 		}

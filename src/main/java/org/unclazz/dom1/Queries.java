@@ -28,4 +28,6 @@ public final class Queries {
 	 * <p>このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
 	public static final AttributesQuery attributes = new AttributesQuery();
+	
+	
 }

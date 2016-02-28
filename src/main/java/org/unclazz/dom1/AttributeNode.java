@@ -5,7 +5,7 @@ import org.w3c.dom.Attr;
 /**
  * {@link Attr}のためのラッパー.
  */
-public interface AttributeNode extends Nodal, HasNodeValue, NodeWrapper<Attr> {
+public interface AttributeNode extends NodeKind, HasNodeValue {
 	/**
 	 * {@link Attr#getName()}を呼び出す.
 	 * @return 属性名

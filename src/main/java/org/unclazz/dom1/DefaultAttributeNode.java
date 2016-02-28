@@ -1,6 +1,7 @@
 package org.unclazz.dom1;
 
 import org.w3c.dom.Attr;
+import org.w3c.dom.Node;
 
 class DefaultAttributeNode implements AttributeNode {
 	private final Attr inner;
@@ -9,7 +10,7 @@ class DefaultAttributeNode implements AttributeNode {
 	}
 
 	@Override
-	public Attr getWrappedNode() {
+	public Node getWrappedNode() {
 		return inner;
 	}
 

@@ -45,7 +45,7 @@ public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
 	}
 
 	@Override
-	protected Iterable<Node> source(Nodal n) {
+	protected Iterable<Node> source(NodeKind n) {
 		return inner.source(n);
 	}
 

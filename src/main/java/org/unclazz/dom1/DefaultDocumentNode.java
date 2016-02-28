@@ -3,6 +3,7 @@ package org.unclazz.dom1;
 import java.util.List;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 class DefaultDocumentNode implements DocumentNode {
 	private final Document inner;
@@ -12,7 +13,7 @@ class DefaultDocumentNode implements DocumentNode {
 	}
 
 	@Override
-	public Document getWrappedNode() {
+	public Node getWrappedNode() {
 		return inner;
 	}
 

@@ -13,7 +13,7 @@ public class AttributesQuery extends FunctionalListQuery<Attr, AttributeNode> {
 	AttributesQuery() {}
 	
 	@Override
-	protected Iterable<Attr> source(Nodal n) {
+	protected Iterable<Attr> source(NodeKind n) {
 		final NamedNodeMap nm =  n.getWrappedNode().getAttributes();
 		if (nm == null) {
 			return Collections.emptyList();
@@ -65,7 +65,7 @@ public class AttributesQuery extends FunctionalListQuery<Attr, AttributeNode> {
 	public Query<AttributeNode> nameEquals(final String name) {
 		return new Query<AttributeNode>() {
 			@Override
-			public AttributeNode queryFrom(Nodal n) {
+			public AttributeNode queryFrom(NodeKind n) {
 				for (final AttributeNode a : AttributesQuery.this.queryFrom(n)) {
 					if (name.equals(name)) {
 						return a;
@@ -97,7 +97,7 @@ public class AttributesQuery extends FunctionalListQuery<Attr, AttributeNode> {
 	 * 引数で指定された部分文字列で名前がはじまる属性を返すクエリを生成する.
 	 * <p>名前の照合のとき大文字小文字は区別される。
 	 * 条件に合致する属性が存在しない場合は空の{@link List}が返される。</p>
-	 * @param name 属性名
+	 * @param s 部分文字列
 	 * @return 属性リストを返すクエリ
 	 */
 	public ListQuery<AttributeNode> nameStartsWith(final String s) {
@@ -113,7 +113,7 @@ public class AttributesQuery extends FunctionalListQuery<Attr, AttributeNode> {
 	 * 引数で指定された部分文字列で名前が終わる属性を返すクエリを生成する.
 	 * <p>名前の照合のとき大文字小文字は区別される。
 	 * 条件に合致する属性が存在しない場合は空の{@link List}が返される。</p>
-	 * @param name 属性名
+	 * @param s 部分文字列
 	 * @return 属性リストを返すクエリ
 	 */
 	public ListQuery<AttributeNode> nameEndsWith(final String s) {
@@ -129,7 +129,7 @@ public class AttributesQuery extends FunctionalListQuery<Attr, AttributeNode> {
 	 * 引数で指定された部分文字列が名前に含まれる属性を返すクエリを生成する.
 	 * <p>名前の照合のとき大文字小文字は区別される。
 	 * 条件に合致する属性が存在しない場合は空の{@link List}が返される。</p>
-	 * @param name 属性名
+	 * @param s 部分文字列
 	 * @return 属性リストを返すクエリ
 	 */
 	public ListQuery<AttributeNode> nameContains(final String s) {

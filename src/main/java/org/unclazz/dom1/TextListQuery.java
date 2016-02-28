@@ -23,7 +23,7 @@ public class TextListQuery extends FunctionalListQuery<Node, TextNode> {
 	}
 
 	@Override
-	protected Iterable<Node> source(Nodal n) {
+	protected Iterable<Node> source(NodeKind n) {
 		return inner.source(n);
 	}
 
@@ -48,7 +48,7 @@ public class TextListQuery extends FunctionalListQuery<Node, TextNode> {
 	public Query<CharSequence> concat(final boolean trim) {
 		return new Query<CharSequence>() {
 			@Override
-			public CharSequence queryFrom(Nodal n) {
+			public CharSequence queryFrom(NodeKind n) {
 				final List<TextNode> l = TextListQuery.this.queryFrom(n);
 				if (l.isEmpty()) {
 					return "";

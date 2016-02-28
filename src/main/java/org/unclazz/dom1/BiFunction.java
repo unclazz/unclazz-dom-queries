@@ -37,8 +37,6 @@ public class BiFunction<A,B,C> implements Function<A,C> {
 	 * レシーバの関数オブジェクトと引数の関数オブジェクトを合成した新しい関数オブジェクトを返す.
 	 * @param other 別の関数
 	 * @return 合成された関数
-	 * @param <A> レシーバの関数の引数の型
-	 * @param <C> レシーバの関数の戻り値の型 かつ 引数で指定された関数の引数の型
 	 * @param <D> 引数で指定された関数の戻り値の型
 	 */
 	public<D> BiFunction<A,C,D> and(Function<C,D> other) {

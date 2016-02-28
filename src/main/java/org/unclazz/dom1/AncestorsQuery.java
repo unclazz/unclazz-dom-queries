@@ -23,7 +23,7 @@ public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {
 	}
 	
 	@Override
-	protected Iterable<Node> source(Nodal n) {
+	protected Iterable<Node> source(NodeKind n) {
 		if (n instanceof BranchNode) {
 			final LinkedList<Node> result = new LinkedList<Node>();
 			Node base = n.getWrappedNode();

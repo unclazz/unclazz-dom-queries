@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 class DefaultElementNode implements ElementNode {
 	private final Element inner;
@@ -13,7 +14,7 @@ class DefaultElementNode implements ElementNode {
 	}
 
 	@Override
-	public Element getWrappedNode() {
+	public Node getWrappedNode() {
 		return inner;
 	}
 
@@ -63,12 +64,12 @@ class DefaultElementNode implements ElementNode {
 
 	@Override
 	public void setAttributeNode(AttributeNode newAttr) {
-		inner.setAttributeNode(newAttr.getWrappedNode());
+		inner.setAttributeNode((Attr)newAttr.getWrappedNode());
 	}
 
 	@Override
 	public AttributeNode removeAttributeNode(AttributeNode oldAttr) {
-		final Attr a = inner.removeAttributeNode(oldAttr.getWrappedNode());
+		final Attr a = inner.removeAttributeNode((Attr)oldAttr.getWrappedNode());
 		if (a == null) {
 			return null;
 		}

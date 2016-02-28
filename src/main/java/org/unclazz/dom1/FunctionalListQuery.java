@@ -17,7 +17,7 @@ public abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 	 * @param n XMLノード
 	 * @return {@link Iterable}インスタンス
 	 */
-	protected abstract Iterable<A> source(Nodal n);
+	protected abstract Iterable<A> source(NodeKind n);
 	/**
 	 * XMLノードから抽出されたオブジェクトをフィルタし変換するための関数を返す.
 	 * <p>当該オブジェクトに対して適用された関数が{@code null}を返した場合、
@@ -35,7 +35,7 @@ public abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 		final ListQuery<B> base = this;
 		return new Query<B>() {
 			@Override
-			public B queryFrom(Nodal n) {
+			public B queryFrom(NodeKind n) {
 				final List<B> one = base.queryFrom(n);
 				return one.isEmpty() ? null : one.get(0);
 			}
@@ -43,7 +43,7 @@ public abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 	}
 	
 	@Override
-	public List<B> queryFrom(Nodal n) {
+	public List<B> queryFrom(NodeKind n) {
 		final ArrayList<B> result = new ArrayList<B>();
 		final Function<A,B> func = function();
 		for (final A a : source(n)) {
@@ -60,12 +60,13 @@ public abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 	 * レシーバのクエリが内包する関数に対して引数で指定された関数を合成して新しいクエリをつくる.
 	 * @param g 別の関数
 	 * @return 新しいクエリ
+	 * @param <C> 別の関数の戻り値の型
 	 */
 	public<C> FunctionalListQuery<A,C> and(final Function<B,C> g) {
 		final FunctionalListQuery<A,B> base = this;
 		return new FunctionalListQuery<A, C>() {
 			@Override
-			public Iterable<A> source(Nodal n) {
+			public Iterable<A> source(NodeKind n) {
 				return base.source(n);
 			}
 

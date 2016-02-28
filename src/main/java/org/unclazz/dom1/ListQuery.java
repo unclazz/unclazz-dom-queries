@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface ListQuery<R> extends Query<List<R>> {
 	@Override
-	List<R> queryFrom(Nodal n);
+	List<R> queryFrom(NodeKind n);
 }

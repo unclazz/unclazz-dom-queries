@@ -2,7 +2,7 @@ package org.unclazz.dom1;
 
 import java.util.List;
 
-public interface TreeStructuredNode extends Nodal {
+public interface TreeStructuredNode extends NodeKind {
 	public interface LeafNode extends TreeStructuredNode {}
 	public interface BranchNode extends TreeStructuredNode {
 		BranchNode getParentNode();
