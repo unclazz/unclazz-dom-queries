@@ -1,7 +1,19 @@
 package org.unclazz.dom1;
 
 /**
- * 任意の型の引数をとり任意の別の型の戻り値を返す関数.
+ * 関数合成のためのメソッドを提供する抽象関数クラス.
+ * <p>このクラスを拡張するには{@link #apply(Object)}の実装を行うだけでよい。</p>
+ * <p>{@link #and(Function)}もしくは{@link #synthesize(Function, Function)}により
+ * 左辺（{@link #and(Function)}のレシーバ もしくは {@link #synthesize(Function, Function)}の第1引数）と
+ * 右辺（{@link #and(Function)}の引数 もしくは {@link #synthesize(Function, Function)}の第2引数）の関数が合成される。</p>
+ * <p>合成された関数の{@link #apply(Object)}が呼び出されると
+ * すぐさま左辺の関数の{@link #apply(Object)}が呼び出される。
+ * ここで戻り値として{@link null}でない値が得られれば、
+ * それを引数にして右辺の{@link #apply(Object)}が呼び出される。
+ * その戻り値として得られた値が合成された関数の{@link #apply(Object)}の戻り値となる。</p>
+ * <p>左辺の関数の{@link #apply(Object)}の戻り値として{@link null}が得られた場合、
+ * 右辺の{@link #apply(Object)}は呼び出されず、
+ * {@link null}が合成された関数の{@link #apply(Object)}の戻り値となる。</p>
  *
  * @param <A> 引数の型
  * @param <B> 戻り値の型
@@ -16,7 +28,7 @@ public abstract class SyntheticFunction<A,B> implements Function<A,B> {
 	 * @return 合成された関数
 	 * @param <C> 別の関数の戻り値の型
 	 */
-	public<C> SyntheticFunction<A,C> and(Function<B,C> other) {
+	public final<C> SyntheticFunction<A,C> and(Function<B,C> other) {
 		return new SynthesizedFunction<A, B, C>(this, other);
 	}
 	
@@ -34,7 +46,7 @@ public abstract class SyntheticFunction<A,B> implements Function<A,B> {
 		return new SynthesizedFunction<A, B, C>(left, right);
 	}
 	
-	private static class SynthesizedFunction<A,B,C> extends SyntheticFunction<A,C> {
+	private final static class SynthesizedFunction<A,B,C> extends SyntheticFunction<A,C> {
 		private final Function<A,B> left;
 		private final Function<B,C> right;
 		
