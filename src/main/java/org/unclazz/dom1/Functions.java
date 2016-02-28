@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
-public final class Functions {
+final class Functions {
 	private Functions(){}
 	
 	public static<A> Function<A, Void> noret() {
@@ -67,18 +67,18 @@ public final class Functions {
 		}
 	};
 	
-	public static final UniFunction<UZNode, ElementNode> uzNode2ElementNode =
-			new UniFunction<UZNode, ElementNode>() {
+	public static final UniFunction<Nodal, ElementNode> uzNode2ElementNode =
+			new UniFunction<Nodal, ElementNode>() {
 		@Override
-		public ElementNode apply(UZNode target) {
+		public ElementNode apply(Nodal target) {
 			return target instanceof ElementNode ? (ElementNode) target : null;
 		}
 	};
 	
-	public static final UniFunction<UZNode, TextNode> uzNode2TextNode =
-			new UniFunction<UZNode, TextNode>() {
+	public static final UniFunction<Nodal, TextNode> uzNode2TextNode =
+			new UniFunction<Nodal, TextNode>() {
 		@Override
-		public TextNode apply(UZNode target) {
+		public TextNode apply(Nodal target) {
 			return target instanceof TextNode ? (TextNode) target : null;
 		}
 	};
@@ -119,7 +119,7 @@ public final class Functions {
 		return new UniFunction<ElementNode, ElementNode>() {
 			@Override
 			public ElementNode apply(ElementNode target) {
-				return target.getTagName().equals(name) ? target : null;
+				return target.getTagName().equalsIgnoreCase(name) ? target : null;
 			}
 		};
 	};

@@ -5,4 +5,5 @@ public final class Queries {
 	public static final ChildrenQuery children = new ChildrenQuery();
 	public static final DescendantsQuery descendents = new DescendantsQuery();
 	public static final AncestorsQuery ancestors = new AncestorsQuery();
+	public static final AttributesQuery attributes = new AttributesQuery();
 }

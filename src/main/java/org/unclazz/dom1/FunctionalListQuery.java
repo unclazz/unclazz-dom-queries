@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
-	protected abstract Iterable<A> source(UZNode n);
+	protected abstract Iterable<A> source(Nodal n);
 	protected abstract Function<A,B> function();
 	
 	public Query<B> one() {
@@ -12,7 +12,7 @@ abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 		return new Query<B>() {
 
 			@Override
-			public B queryFrom(UZNode n) {
+			public B queryFrom(Nodal n) {
 				final List<B> one = base.queryFrom(n);
 				return one.isEmpty() ? null : one.get(0);
 			}
@@ -20,7 +20,7 @@ abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 	}
 	
 	@Override
-	public List<B> queryFrom(UZNode n) {
+	public List<B> queryFrom(Nodal n) {
 		final ArrayList<B> result = new ArrayList<B>();
 		final Function<A,B> func = function();
 		for (final A a : source(n)) {
@@ -37,7 +37,7 @@ abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 		final FunctionalListQuery<A,B> base = this;
 		return new FunctionalListQuery<A, C>() {
 			@Override
-			public Iterable<A> source(UZNode n) {
+			public Iterable<A> source(Nodal n) {
 				return base.source(n);
 			}
 

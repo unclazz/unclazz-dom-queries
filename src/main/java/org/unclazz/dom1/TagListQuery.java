@@ -9,7 +9,7 @@ public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
 	}
 
 	@Override
-	protected Iterable<Node> source(UZNode n) {
+	protected Iterable<Node> source(Nodal n) {
 		return tag.source(n);
 	}
 

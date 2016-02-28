@@ -18,6 +18,9 @@ class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	}
 
 	public TagListQuery tag(String name) {
+		if (name.equals("*")) {
+			return tag();
+		}
 		return new TagListQuery(this.and(Functions.treeStructuredNode2ElementNode
 				.and(Functions.tagNameEquals(name))));
 	}
@@ -27,10 +30,9 @@ class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	}
 	
 	@Override
-	protected Iterable<Node> source(UZNode n) {
+	protected Iterable<Node> source(Nodal n) {
 		if (n instanceof BranchNode) {
-			final BranchNode b = (BranchNode) n;
-			return NodeIterable.wrap(b.getWrappedNode().getChildNodes());
+			return NodeIterable.wrap(n.getWrappedNode().getChildNodes());
 		}
 		return Collections.emptyList();
 	}

@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
 /**
  * DOMのElementをあらわすインターフェース.
  */
-public interface ElementNode extends UZNode, ElementIncludable, BranchNode, NodeWrapper<Element> {
+public interface ElementNode extends Nodal, ElementIncludable, BranchNode, NodeWrapper<Element> {
 	String getTagName();
 	boolean hasAttribute(String name);
 	String getAttribute(String name);
