@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sample>
-	<foo id="foo0" class="klass1 klass2" attr1="attr1-value" attr2="attr2-value" Attr1=""></foo>
+	<foo id="foo0" class="class1 class2" attr1="attr1-value" attr2="attr2-value" Attr1=""></foo>
 	<foo id="foo1" attr1="attr1-value">
 		<bar id="bar0" attr1="attr1-value" attr2="attr2-value"></bar>
-		<bar id="bar1" attr1="attr1-value"></bar>
+		<bar id="bar1" class="class1" attr1="attr1-value"></bar>
 		<![CDATA[
 			here cdata section!
 		]]>
 		<!-- here comment! -->
 		baz
 	</foo>
-	<not-foo id="not-foo0">not-foo</not-foo>
+	<not-foo id="not-foo0" class="class2 class3">not-foo</not-foo>
 </sample>

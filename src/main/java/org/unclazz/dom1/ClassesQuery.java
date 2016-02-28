@@ -14,9 +14,8 @@ public class ClassesQuery implements ListQuery<String> {
 			if (classValue == null) {
 				return Collections.emptyList();
 			}
-			return Arrays.asList(classValue.split("\\s+"));
+			return Arrays.asList(classValue.trim().split("\\s+"));
 		}
 		return Collections.emptyList();
 	}
-
 }

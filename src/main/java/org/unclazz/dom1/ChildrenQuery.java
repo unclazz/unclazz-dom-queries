@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
  * 子要素の問合せを行うためのクエリ.
  * <p>{@link DescendantsQuery}と異なりこのクエリは起点となる要素の直接の子要素のみを問合せの対象とする。</p>
  */
-class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
+public class ChildrenQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
 	ChildrenQuery() {}
 	
 	private final TagListQuery tag = new TagListQuery(this);

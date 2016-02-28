@@ -69,7 +69,6 @@ public abstract class FunctionalListQuery<A,B> implements ListQuery<B> {
 			public Iterable<A> source(NodeKind n) {
 				return base.source(n);
 			}
-
 			@Override
 			public Function<A, C> function() {
 				return BiFunction.synthesize(base.function(), g);

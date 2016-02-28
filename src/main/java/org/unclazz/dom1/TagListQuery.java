@@ -81,4 +81,17 @@ public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
 			}
 		});
 	}
+	/**
+	 * 指定されたclass属性値を持つ{@link ElementNode}を返すクエリを返す.
+	 * @param className class属性名
+	 * @return クエリ
+	 */
+	public ListQuery<ElementNode> className(final String className) {
+		return this.and(new Function<ElementNode, ElementNode>() {
+			@Override
+			public ElementNode apply(ElementNode target) {
+				return target.query(Queries.classes).contains(className) ? target : null;
+			}
+		});
+	}
 }

@@ -17,18 +17,24 @@ public class Sample {
 
 	public static void main(String[] args) throws SAXException, IOException {
 		final DocumentNode dn = DocumentNodes.from(new File("src/test/resources/sample.xml"));
-		final ElementNode foo1 = dn.query(descendents.tag("foo").one());
-		final ElementNode bar1 = dn.query(descendents.tag("bar").one());
+		final ElementNode foo1 = dn.query(descendants.tag("foo").one());
+		final ElementNode bar1 = dn.query(descendants.tag("bar").one());
 		
 //		for (final AttributeNode en : foo1.query(attributes.specified(true))) {
 //			System.out.println("> " + en.getName());
 //		}
 		
-		System.out.println(foo1.query(classes));
-		
-		System.out.println(dn.query(id("foo1")).query(text(true)));
-		
-		for (final TreeStructuredNode en : bar1.query(ancestors)) {
+//		System.out.println(foo1.query(classes));
+//		
+//		System.out.println(dn.query(id("foo1")).query(text(true)));
+//		
+//		for (final TreeStructuredNode en : bar1.query(ancestors)) {
+//			System.out.println(en);
+//		}
+//		
+		for (final ElementNode en : dn
+				.query(children.tag("sample").one())
+				.query(children.tag().className("class1"))) {
 			System.out.println(en);
 		}
 	}

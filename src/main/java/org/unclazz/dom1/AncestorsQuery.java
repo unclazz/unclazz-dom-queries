@@ -6,18 +6,29 @@ import java.util.LinkedList;
 import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.Node;
 
+/**
+ * 祖先要素の問合せを行うためのクエリ.
+ */
 public class AncestorsQuery extends FunctionalListQuery<Node, BranchNode> {
 	AncestorsQuery() {}
 	
 	private TagListQuery tag = null;
 
+	/**
+	 * 祖先要素の{@link ElementNode}を返すクエリを返す.
+	 * @return クエリ
+	 */
 	public TagListQuery tag() {
 		if (tag == null) {
 			tag = new TagListQuery(this);
 		}
 		return tag;
 	}
-
+	/**
+	 * 祖先要素の{@link ElementNode}を返すクエリを返す.
+	 * @param name タグ名
+	 * @return クエリ
+	 */
 	public TagListQuery tag(String name) {
 		return new TagListQuery(this, name);
 	}
