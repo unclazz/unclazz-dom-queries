@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sample>
-	<foo id="foo0" attr1="attr1-value" attr2="attr2-value" Attr1=""></foo>
+	<foo id="foo0" class="klass1 klass2" attr1="attr1-value" attr2="attr2-value" Attr1=""></foo>
 	<foo id="foo1" attr1="attr1-value">
 		<bar id="bar0" attr1="attr1-value" attr2="attr2-value"></bar>
 		<bar id="bar1" attr1="attr1-value"></bar>

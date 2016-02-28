@@ -44,4 +44,16 @@ public final class Queries {
 	 * このクエリ・オブジェクトのメンバーを通じてより特殊化された問合せを行うクエリを生成することができる。</p>
 	 */
 	public static final SiblingsQuery nexts = new SiblingsQuery(false);
+	
+	public static final Query<ElementNode> id(final String id) {
+		return new IdQuery(id);
+	}
+	
+	public static final Query<CharSequence> text = descendents.text().concat();
+	
+	public static final Query<CharSequence> text(final boolean trim) {
+		return descendents.text().concat(trim);
+	}
+	
+	public static final ListQuery<String> classes = new ClassesQuery();
 }

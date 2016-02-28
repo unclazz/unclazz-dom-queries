@@ -24,6 +24,10 @@ public class Sample {
 //			System.out.println("> " + en.getName());
 //		}
 		
+		System.out.println(foo1.query(classes));
+		
+		System.out.println(dn.query(id("foo1")).query(text(true)));
+		
 		for (final TreeStructuredNode en : bar1.query(ancestors)) {
 			System.out.println(en);
 		}
