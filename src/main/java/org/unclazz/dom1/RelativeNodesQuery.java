@@ -20,7 +20,7 @@ public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeS
 	private final ElementListQuery tag = new ElementListQuery(this);
 
 	/**
-	 * 関連ノードの{@link ElementNode}を返すクエリを返す.
+	 * 関連ノードの{@link ElementNode}を問合せるクエリを返す.
 	 * @return クエリ
 	 */
 	public ElementListQuery element() {
@@ -28,7 +28,7 @@ public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeS
 	}
 
 	/**
-	 * 関連ノードの{@link ElementNode}を返すクエリを返す.
+	 * 関連ノードの{@link ElementNode}を問合せるクエリを返す.
 	 * <p>引数に特殊値{@code "*"}を指定した場合、{@link #element()}と同義となる。</p>
 	 * @param name 要素名
 	 * @return クエリ
@@ -41,11 +41,37 @@ public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeS
 	}
 	
 	/**
-	 * 関連ノードの{@link TextNode}を返すクエリを返す.
+	 * 関連ノードの{@link TextNode}を問合せるクエリを返す.
 	 * @return クエリ
 	 */
 	public TextListQuery text() {
 		return new TextListQuery(this);
+	}
+	
+	/**
+	 * 関連ノードの{@link CommentNode}を問合せるクエリを返す.
+	 * @return クエリ
+	 */
+	public FunctionalListQuery<Node, CommentNode> comment() {
+		return this.and(new Function<TreeStructuredNode, CommentNode>() {
+			@Override
+			public CommentNode apply(TreeStructuredNode target) {
+				return target instanceof CommentNode ? (CommentNode) target : null;
+			}
+		});
+	}
+	
+	/**
+	 * 関連ノードの{@link CDATASectionNode}を問合せるクエリを返す.
+	 * @return クエリ
+	 */
+	public FunctionalListQuery<Node, CDATASectionNode> cdata() {
+		return this.and(new Function<TreeStructuredNode, CDATASectionNode>() {
+			@Override
+			public CDATASectionNode apply(TreeStructuredNode target) {
+				return target instanceof CDATASectionNode ? (CDATASectionNode) target : null;
+			}
+		});
 	}
 
 	@Override

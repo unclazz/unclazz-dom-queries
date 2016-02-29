@@ -10,7 +10,7 @@ import org.w3c.dom.Node;
  * </p>
  */
 public class ElementListQuery extends FunctionalListQuery<Node, ElementNode> {
-	private static final Function<? extends TreeStructuredNode, ElementNode> treeStructuredNode2ElementNode =
+	private static final Function<TreeStructuredNode, ElementNode> treeStructuredNode2ElementNode =
 		new Function<TreeStructuredNode, ElementNode>() {
 		@Override
 		public ElementNode apply(TreeStructuredNode target) {
@@ -20,20 +20,14 @@ public class ElementListQuery extends FunctionalListQuery<Node, ElementNode> {
 	
 	private final FunctionalListQuery<Node, ElementNode> inner;
 	
-	<T extends TreeStructuredNode>
-	ElementListQuery(final FunctionalListQuery<Node, T> childrenQuery) {
-		this(childrenQuery, null);
+	ElementListQuery(final FunctionalListQuery<Node, TreeStructuredNode> relativeNodesQuery) {
+		this(relativeNodesQuery, null);
 	}
 	
-	<T extends TreeStructuredNode>
-	ElementListQuery(final FunctionalListQuery<Node, T> childrenQuery, final String name) {
-		@SuppressWarnings("unchecked")
-		final Function<T, ElementNode> t2ElementNode = 
-				(Function<T, ElementNode>) treeStructuredNode2ElementNode;
-		
+	ElementListQuery(final FunctionalListQuery<Node, TreeStructuredNode> relativeNodesQuery, final String name) {
 		if (name == null) {
 			// 関数を合成して新しいクエリを生成する
-			this.inner = childrenQuery.and(t2ElementNode);
+			this.inner = relativeNodesQuery.and(treeStructuredNode2ElementNode);
 		} else {
 			// タグ名によるフィルタリングを行うための関数オブジェクトを生成
 			final Function<ElementNode, ElementNode> tagName =
@@ -44,7 +38,7 @@ public class ElementListQuery extends FunctionalListQuery<Node, ElementNode> {
 				}
 			};
 			// 関数を合成して新しいクエリを生成する
-			this.inner = childrenQuery.and(t2ElementNode).and(tagName);
+			this.inner = relativeNodesQuery.and(treeStructuredNode2ElementNode).and(tagName);
 		}
 	}
 
@@ -93,7 +87,11 @@ public class ElementListQuery extends FunctionalListQuery<Node, ElementNode> {
 			}
 		});
 	}
-
+	/**
+	 * 対象XMLノードの子孫要素に対してIDによる問合せを行うクエリを返す.
+	 * @param id ID
+	 * @return クエリ
+	 */
 	public final Query<ElementNode> id(final String id) {
 		final ListQuery<ElementNode> base = this;
 		return new Query<ElementNode>() {

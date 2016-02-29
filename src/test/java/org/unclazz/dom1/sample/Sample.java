@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.unclazz.dom1.AttributeNode;
+import org.unclazz.dom1.CommentNode;
 import org.unclazz.dom1.DocumentNode;
 import org.unclazz.dom1.DocumentNodes;
 import org.unclazz.dom1.ElementNode;
@@ -32,8 +33,7 @@ public class Sample {
 //			System.out.println(en);
 //		}
 //		
-		for (final ElementNode en : dn.query(descendants.element()
-				.hasAttribute("attr1").valueMatches(".+-valu"))) {
+		for (final CommentNode en : dn.query(descendants.comment())) {
 			System.out.println(en);
 		}
 	}

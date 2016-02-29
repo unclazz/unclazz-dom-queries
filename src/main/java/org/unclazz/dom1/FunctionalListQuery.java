@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * {@link Function}によりフィルタと変換を行いその結果を返すクエリ.
  * <p>具象クラスは{@link #source(NodeKind)}により入力ソースを規定し、
  * {@link #function()}により入力ソースから得られたオブジェクトの変換とフィルタリングを規定する。</p>
- * <p>このクエリは問合せ対象XMLノードを引数にて{@link #source(NodeKind)}を呼び出す。
+ * <p>このクエリは問合せ対象XMLノードを引数にして{@link #source(NodeKind)}を呼び出す。
  * そしてそこから返された{@link Iterable}の要素のそれぞれを引数として
  * {@link #function()}が返す{@link Function}を実行する。
  * {@link Function#apply(Object)}を呼び出した結果が{@code null}以外であれば
