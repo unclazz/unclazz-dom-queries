@@ -23,17 +23,17 @@ class DefaultDocumentFragmentNode implements DocumentFragmentNode {
 
 	@Override
 	public List<TreeStructuredNode> getChildNodes() {
-		return UZNodeUtils.wrapTreeStructuredNodes(inner.getChildNodes());
+		return NodeKindUtils.wrapTreeStructuredNodes(inner.getChildNodes());
 	}
 
 	@Override
 	public TreeStructuredNode getFirstChild() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getFirstChild());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getFirstChild());
 	}
 
 	@Override
 	public TreeStructuredNode getLastChild() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getLastChild());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getLastChild());
 	}
 
 	@Override

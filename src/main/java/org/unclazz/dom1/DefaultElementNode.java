@@ -30,7 +30,7 @@ class DefaultElementNode implements ElementNode {
 
 	@Override
 	public List<ElementNode> getElementsByTagName(String tagName) {
-		return UZNodeUtils.wrapElements(inner.getElementsByTagName(tagName));
+		return NodeKindUtils.wrapElements(inner.getElementsByTagName(tagName));
 	}
 
 	@Override
@@ -83,7 +83,7 @@ class DefaultElementNode implements ElementNode {
 
 	@Override
 	public Map<String, AttributeNode> getAttributes() {
-		return UZNodeUtils.wrapAttributesMap(inner.getAttributes());
+		return NodeKindUtils.wrapAttributesMap(inner.getAttributes());
 	}
 
 	@Override
@@ -98,12 +98,12 @@ class DefaultElementNode implements ElementNode {
 
 	@Override
 	public TreeStructuredNode getPreviousSibling() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getPreviousSibling());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getPreviousSibling());
 	}
 
 	@Override
 	public TreeStructuredNode getNextSibling() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getNextSibling());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getNextSibling());
 	}
 
 	@Override
@@ -123,22 +123,22 @@ class DefaultElementNode implements ElementNode {
 
 	@Override
 	public BranchNode getParentNode() {
-		return UZNodeUtils.wrapBranchNode(inner.getParentNode());
+		return NodeKindUtils.wrapBranchNode(inner.getParentNode());
 	}
 
 	@Override
 	public List<TreeStructuredNode> getChildNodes() {
-		return UZNodeUtils.wrapTreeStructuredNodes(inner.getChildNodes());
+		return NodeKindUtils.wrapTreeStructuredNodes(inner.getChildNodes());
 	}
 
 	@Override
 	public TreeStructuredNode getFirstChild() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getFirstChild());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getFirstChild());
 	}
 
 	@Override
 	public TreeStructuredNode getLastChild() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getLastChild());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getLastChild());
 	}
 
 	@Override

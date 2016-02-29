@@ -42,17 +42,17 @@ class DefaultCDATASectionNode implements CDATASectionNode, LeafNode {
 
 	@Override
 	public BranchNode getParentNode() {
-		return UZNodeUtils.wrapBranchNode(inner.getParentNode());
+		return NodeKindUtils.wrapBranchNode(inner.getParentNode());
 	}
 
 	@Override
 	public TreeStructuredNode getPreviousSibling() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getPreviousSibling());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getPreviousSibling());
 	}
 
 	@Override
 	public TreeStructuredNode getNextSibling() {
-		return UZNodeUtils.wrapTreeStructuredNode(inner.getNextSibling());
+		return NodeKindUtils.wrapTreeStructuredNode(inner.getNextSibling());
 	}
 
 	@Override

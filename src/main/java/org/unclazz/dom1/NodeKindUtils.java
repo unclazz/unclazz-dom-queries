@@ -18,8 +18,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-final class UZNodeUtils {
-	private UZNodeUtils() {}
+final class NodeKindUtils {
+	private NodeKindUtils() {}
 	
 	static List<ElementNode> wrapElements(final NodeList nodeList) {
 		final int len = nodeList.getLength();
