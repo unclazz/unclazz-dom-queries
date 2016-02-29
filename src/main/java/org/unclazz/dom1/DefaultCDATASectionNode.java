@@ -74,4 +74,9 @@ class DefaultCDATASectionNode implements CDATASectionNode, LeafNode {
 	public String toString() {
 		return "CDATASectionNode(<![CDATA[ ... ]])";
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return new DefaultDocumentNode(inner.getOwnerDocument());
+	}
 }

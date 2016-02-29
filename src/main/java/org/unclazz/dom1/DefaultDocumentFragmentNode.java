@@ -90,4 +90,9 @@ class DefaultDocumentFragmentNode implements DocumentFragmentNode {
 	public String toString() {
 		return "DocumentFragment()";
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return new DefaultDocumentNode(inner.getOwnerDocument());
+	}
 }

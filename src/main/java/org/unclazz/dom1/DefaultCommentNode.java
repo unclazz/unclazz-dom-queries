@@ -74,4 +74,9 @@ class DefaultCommentNode implements CommentNode, LeafNode {
 	public String toString() {
 		return "CommentNode(<!-- ... -->)";
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return new DefaultDocumentNode(inner.getOwnerDocument());
+	}
 }

@@ -154,4 +154,9 @@ class DefaultElementNode implements ElementNode {
 		.append(">)");
 		return buff.toString();
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return new DefaultDocumentNode(inner.getOwnerDocument());
+	}
 }

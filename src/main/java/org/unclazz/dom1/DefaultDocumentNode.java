@@ -131,4 +131,9 @@ class DefaultDocumentNode implements DocumentNode {
 	public String toString() {
 		return "DocumentNode()";
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return null;
+	}
 }

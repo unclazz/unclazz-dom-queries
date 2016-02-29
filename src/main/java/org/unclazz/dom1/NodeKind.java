@@ -1,5 +1,6 @@
 package org.unclazz.dom1;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -29,4 +30,9 @@ public interface NodeKind {
 	 * @return ノード
 	 */
 	Node getWrappedNode();
+	/**
+	 * {@link Node#getOwnerDocument()}を呼び出す.
+	 * @return {@link Document}をラップしたオブジェクト
+	 */
+	DocumentNode getOwnerDocument();
 }

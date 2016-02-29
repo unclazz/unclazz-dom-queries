@@ -50,4 +50,9 @@ class DefaultAttributeNode implements AttributeNode {
 		buff.append("AttributeNode(").append(getName()).append('=').append(getValue()).append(')');
 		return buff.toString();
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return new DefaultDocumentNode(inner.getOwnerDocument());
+	}
 }

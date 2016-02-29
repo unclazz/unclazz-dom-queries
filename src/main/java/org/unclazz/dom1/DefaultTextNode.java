@@ -79,4 +79,9 @@ class DefaultTextNode implements TextNode, LeafNode {
 	public String toString() {
 		return "TextNode()";
 	}
+
+	@Override
+	public DocumentNode getOwnerDocument() {
+		return new DefaultDocumentNode(inner.getOwnerDocument());
+	}
 }
