@@ -5,7 +5,10 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 /**
- * {@link TextNode}を取得するためのクエリ.
+ * {@link TextNode}の問合せを行うクエリ.
+ * <p>このオブジェクト自体がクエリとして機能すると同時に、
+ * このオブジェクトのメンバーが返すオブジェクトもまたより特殊化された問合せを行うクエリとして機能する。
+ * インスタンスは{@link Queries#text}を通じて得られる。</p>
  */
 public class TextListQuery extends FunctionalListQuery<Node, TextNode> {
 	private static Function<TreeStructuredNode, TextNode> treeStructureNode2TextNode =

@@ -7,7 +7,10 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.NamedNodeMap;
 
 /**
- * {@link AttributeNode}を取得するためのクエリ.
+ * {@link AttributeNode}の問合せを行うクエリ.
+ * <p>このオブジェクト自体がクエリとして機能すると同時に、
+ * このオブジェクトのメンバーが返すオブジェクトもまたより特殊化された問合せを行うクエリとして機能する。
+ * インスタンスは{@link Queries#attributes}を通じて得られる。</p>
  */
 public class AttributesQuery extends FunctionalListQuery<Attr, AttributeNode> {
 	AttributesQuery() {}

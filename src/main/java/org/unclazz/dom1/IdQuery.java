@@ -7,6 +7,9 @@ import org.w3c.dom.Node;
 class IdQuery implements Query<ElementNode> {
 	private final String id;
 	IdQuery(final String id) {
+		if (id == null) {
+			throw new NullPointerException();
+		}
 		this.id = id;
 	}
 
@@ -23,7 +26,7 @@ class IdQuery implements Query<ElementNode> {
 		}
 		for (final Node tag : iter) {
 			final Element e = (Element) tag;
-			if (e.getAttribute("id").equals(id)) {
+			if (id.equals(e.getAttribute("id"))) {
 				return new DefaultElementNode(e);
 			}
 		}

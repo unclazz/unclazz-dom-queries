@@ -5,9 +5,6 @@ import java.util.LinkedList;
 
 import org.w3c.dom.Node;
 
-/**
- * 兄弟要素の問合せを行うためのクエリ.
- */
 class SiblingsQuery extends RelativeNodesQuery {
 	SiblingsQuery(boolean previous) { this.previous = previous; }
 	

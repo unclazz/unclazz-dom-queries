@@ -8,8 +8,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 class DescendantsQuery extends RelativeNodesQuery {
-	DescendantsQuery() {}
-	
 	@Override
 	public Iterable<Node> source(NodeKind n) {
 		if (n instanceof BranchNode) {

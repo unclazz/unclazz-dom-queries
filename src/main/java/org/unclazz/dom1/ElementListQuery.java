@@ -3,9 +3,13 @@ package org.unclazz.dom1;
 import org.w3c.dom.Node;
 
 /**
- * {@link ElementNode}を取得するためのクエリ.
+ * {@link ElementNode}の問合わせを行うクエリ.
+ * <p>このオブジェクト自体がクエリとして機能すると同時に、
+ * このオブジェクトのメンバーが返すオブジェクトもまたより特殊化された問合せを行うクエリとして機能する。
+ * インスタンスは{@link RelativeNodesQuery#element()}メソッドなどを通じて得られる。
+ * </p>
  */
-public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
+public class ElementListQuery extends FunctionalListQuery<Node, ElementNode> {
 	private static final Function<? extends TreeStructuredNode, ElementNode> treeStructuredNode2ElementNode =
 		new Function<TreeStructuredNode, ElementNode>() {
 		@Override
@@ -17,12 +21,12 @@ public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
 	private final FunctionalListQuery<Node, ElementNode> inner;
 	
 	<T extends TreeStructuredNode>
-	TagListQuery(final FunctionalListQuery<Node, T> childrenQuery) {
+	ElementListQuery(final FunctionalListQuery<Node, T> childrenQuery) {
 		this(childrenQuery, null);
 	}
 	
 	<T extends TreeStructuredNode>
-	TagListQuery(final FunctionalListQuery<Node, T> childrenQuery, final String name) {
+	ElementListQuery(final FunctionalListQuery<Node, T> childrenQuery, final String name) {
 		@SuppressWarnings("unchecked")
 		final Function<T, ElementNode> t2ElementNode = 
 				(Function<T, ElementNode>) treeStructuredNode2ElementNode;
@@ -73,13 +77,8 @@ public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
 	 * @param name 属性名
 	 * @return クエリ
 	 */
-	public FunctionalListQuery<Node, ElementNode> hasAttribute(final String name) {
-		return this.and(new Function<ElementNode, ElementNode>() {
-			@Override
-			public ElementNode apply(ElementNode target) {
-				return target.hasAttribute(name) ? target : null;
-			}
-		});
+	public AttributedElementListQuery hasAttribute(final String name) {
+		return new AttributedElementListQuery(this, name);
 	}
 	/**
 	 * 指定されたclass属性値を持つ{@link ElementNode}を返すクエリを返す.
@@ -93,5 +92,20 @@ public class TagListQuery extends FunctionalListQuery<Node, ElementNode> {
 				return target.query(Queries.classes).contains(className) ? target : null;
 			}
 		});
+	}
+
+	public final Query<ElementNode> id(final String id) {
+		final ListQuery<ElementNode> base = this;
+		return new Query<ElementNode>() {
+			@Override
+			public ElementNode queryFrom(final NodeKind n) {
+				for (final ElementNode e : base.queryFrom(n)) {
+					if (id.equals(e.getAttribute("id"))) {
+						return e;
+					}
+				}
+				return null;
+			}
+		};
 	}
 }

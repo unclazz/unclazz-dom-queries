@@ -11,31 +11,33 @@ import org.w3c.dom.Text;
 /**
  * 関連ノードの問合せを行うためのクエリ.
  * <p>具象クラスの実装により対象とするノードの範囲は子ノード、子孫ノード、兄弟ノード、祖先ノードというように異なる。</p>
+ * <p>このオブジェクト自体がクエリとして機能すると同時に、
+ * このオブジェクトのメンバーが返すオブジェクトもまたより特殊化された問合せを行うクエリとして機能する。
+ * インスタンスは{@link Queries#children}、{@link Queries#descendants}、
+ * {@link Queries#prevs}、{@link Queries#nexts}、{@link Queries#ancestors}を通じて得られる。</p>
  */
 public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
-	RelativeNodesQuery() {}
-	
-	private final TagListQuery tag = new TagListQuery(this);
+	private final ElementListQuery tag = new ElementListQuery(this);
 
 	/**
 	 * 関連ノードの{@link ElementNode}を返すクエリを返す.
 	 * @return クエリ
 	 */
-	public TagListQuery tag() {
+	public ElementListQuery element() {
 		return tag;
 	}
 
 	/**
 	 * 関連ノードの{@link ElementNode}を返すクエリを返す.
-	 * <p>引数に特殊値{@code "*"}を指定した場合、{@link #tag()}と同義となる。</p>
+	 * <p>引数に特殊値{@code "*"}を指定した場合、{@link #element()}と同義となる。</p>
 	 * @param name 要素名
 	 * @return クエリ
 	 */
-	public TagListQuery tag(String name) {
+	public ElementListQuery element(String name) {
 		if (name.equals("*")) {
-			return tag();
+			return element();
 		}
-		return new TagListQuery(this, name);
+		return new ElementListQuery(this, name);
 	}
 	
 	/**

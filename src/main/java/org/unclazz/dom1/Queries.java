@@ -80,6 +80,6 @@ public final class Queries {
 	 * @return クエリ
 	 */
 	public static final ListQuery<ElementNode> className(final String className) {
-		return descendants.tag().className(className);
+		return descendants.element().className(className);
 	}
 }
