@@ -8,9 +8,12 @@ import org.unclazz.dom1.CommentNode;
 import org.unclazz.dom1.DocumentNode;
 import org.unclazz.dom1.DocumentNodes;
 import org.unclazz.dom1.ElementNode;
+import org.unclazz.dom1.NodeKind;
 import org.unclazz.dom1.Queries;
 import org.unclazz.dom1.TreeStructuredNode;
 import org.unclazz.dom1.TreeStructuredNode.BranchNode;
+import org.w3c.dom.Document;
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 import static org.unclazz.dom1.Queries.*;
 
@@ -35,6 +38,10 @@ public class Sample {
 //		
 		for (final CommentNode en : dn.query(descendants.comment())) {
 			System.out.println(en);
+			final Document d  =  (Document) en.getOwnerDocument().getWrappedNode();
+			final NodeKind nk = en.query(create.element("foo")
+					.attribute("bar", "baz")
+					.append(create.element("foo-child").text("hello")));
 		}
 	}
 

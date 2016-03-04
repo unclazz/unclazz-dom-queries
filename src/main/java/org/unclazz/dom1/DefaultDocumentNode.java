@@ -53,7 +53,7 @@ class DefaultDocumentNode implements DocumentNode {
 	}
 
 	@Override
-	public TextNode createText(String data) {
+	public TextNode createTextNode(String data) {
 		return new DefaultTextNode(inner.createTextNode(data));
 	}
 

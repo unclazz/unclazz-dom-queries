@@ -36,7 +36,7 @@ public interface DocumentNode extends NodeKind, BranchNode {
 	 * @param data データ
 	 * @return {@link Text}のラッパー
 	 */
-	TextNode createText(String data);
+	TextNode createTextNode(String data);
 	/**
 	 * {@link Document#createComment(String)}を呼び出す.
 	 * @param data データ

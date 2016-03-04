@@ -21,6 +21,26 @@ import org.w3c.dom.Text;
 final class NodeKindUtils {
 	private NodeKindUtils() {}
 	
+	static NodeKind wrapNode(final Node node) {
+		if (node instanceof Attr) {
+			return new DefaultAttributeNode((Attr) node);
+		} else if (node instanceof CDATASection) {
+			return new DefaultCDATASectionNode((CDATASection) node);
+		} else if (node instanceof Comment) {
+			return new DefaultCommentNode((Comment) node);
+		} else if (node instanceof DocumentFragment) {
+			return new DefaultDocumentFragmentNode((DocumentFragment) node);
+		} else if (node instanceof Document) {
+			return new DefaultDocumentNode((Document) node);
+		} else if (node instanceof Element) {
+			return new DefaultElementNode((Element) node);
+		} else if (node instanceof Text) {
+			return new DefaultTextNode((Text) node);
+		} else {
+			return new UnsupportedNode(node);
+		}
+	}
+	
 	static List<ElementNode> wrapElements(final NodeList nodeList) {
 		final int len = nodeList.getLength();
 		if (len == 0) {
