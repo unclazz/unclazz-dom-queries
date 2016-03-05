@@ -6,7 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * {@link NodeList}をラップする{@link Iterable}オブジェクト.
+ * {@link NodeList}を内包する{@link Iterable}オブジェクト.
  */
 class NodeIterable implements Iterable<Node> {
 	/**

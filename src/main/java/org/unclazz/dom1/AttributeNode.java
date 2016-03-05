@@ -3,7 +3,7 @@ package org.unclazz.dom1;
 import org.w3c.dom.Attr;
 
 /**
- * {@link Attr}のためのラッパー.
+ * {@link Attr}を内包するオブジェクト.
  */
 public interface AttributeNode extends TreeStructure.Branch, NodeWrapper<Attr> {
 	/**

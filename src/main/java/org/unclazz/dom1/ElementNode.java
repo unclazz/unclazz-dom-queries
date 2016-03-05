@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
 /**
- * {@link Element}のためのラッパー.
+ * {@link Element}を内包するオブジェクト.
  */
 public interface ElementNode extends TreeStructure.Branch, NodeWrapper<Element> {
 	/**

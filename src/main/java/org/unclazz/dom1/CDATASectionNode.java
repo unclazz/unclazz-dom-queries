@@ -3,7 +3,7 @@ package org.unclazz.dom1;
 import org.w3c.dom.CDATASection;
 
 /**
- * {@link CDATASection}のためのラッパー.
+ * {@link CDATASection}を内包するオブジェクト.
  */
 public interface CDATASectionNode extends TreeStructure.Leaf, NodeWrapper<CDATASection> {
 	/**

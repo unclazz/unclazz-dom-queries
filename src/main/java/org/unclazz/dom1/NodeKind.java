@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * {@link Node}オブジェクトのラッパー.
+ * {@link Node}を内包するオブジェクト.
  * <p>DOMの仕様で定められた{@link Node}とは異なり
  * このライブラリにおける{@link NodeKind}は必要最小限のメンバーのみを宣言している。
  * このオブジェクトがあらわすXMLノードから値を取得したりこのノードを起点にしてXMLの木構造をトラバースするには、

@@ -3,7 +3,7 @@ package org.unclazz.dom1;
 import org.w3c.dom.Text;
 
 /**
- * {@link Text}のためのラッパー.
+ * {@link Text}を内包するオブジェクト.
  */
 public interface TextNode extends TreeStructure.Leaf, NodeWrapper<Text> {
 	/**

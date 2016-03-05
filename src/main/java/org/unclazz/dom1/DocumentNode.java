@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 /**
- * {@link Document}のためのラッパー.
+ * {@link Document}を内包するオブジェクト.
  */
 public interface DocumentNode extends TreeStructure.Root, NodeWrapper<Document> {
 	/**
