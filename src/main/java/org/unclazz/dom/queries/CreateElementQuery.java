@@ -48,6 +48,7 @@ public class CreateElementQuery implements Query<NodeKind> {
 	
 	/**
 	 * 子ノード追加の指定を加えた新しいクエリを返す.
+	 * <p>{@code parentNode.query(create.element("child").append(newChild))}というように利用する。</p>
 	 * @param newChild 子ノードとして追加されるノード
 	 * @return クエリ
 	 */
@@ -64,6 +65,7 @@ public class CreateElementQuery implements Query<NodeKind> {
 	
 	/**
 	 * 子ノード追加の指定を加えた新しいクエリを返す.
+	 * <p>{@code parentNode.query(create.element("child").append(newChild))}というように利用する。</p>
 	 * @param newChild 子ノードとして追加されるノード
 	 * @return クエリ
 	 */
@@ -80,6 +82,7 @@ public class CreateElementQuery implements Query<NodeKind> {
 	
 	/**
 	 * 子ノード追加の指定を加えた新しいクエリを返す.
+	 * <p>{@code parentNode.query(create.element("child").append(create.element("grandchild")))}というように利用する。</p>
 	 * @param newChild 子ノードとして追加されるノードを返すクエリ
 	 * @return クエリ
 	 */
