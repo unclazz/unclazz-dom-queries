@@ -1,26 +1,39 @@
 package org.unclazz.dom.queries.sample;
 
 import static org.unclazz.dom.queries.Queries.*;
+import static org.unclazz.dom.queries.sample.SampleUtils.*;
 
 import java.io.File;
 
 import org.unclazz.dom.queries.DocumentNode;
 import org.unclazz.dom.queries.DocumentNodes;
 import org.unclazz.dom.queries.NodeKind;
+import org.unclazz.dom.queries.ParseException;
 
+/**
+ * ファイルや文字シーケンスからXMLドキュメントを読み込むサンプル.
+ */
 public class ParseXmlFile {
-	public static final String SAMPLE_HTML_PATH = "src/test/resources/sample.html";
-	public static final String SAMPLE_XML_PATH = "src/test/resources/sample.xml";
 	
-	public static void main(String[] args) throws Exception {
-		final DocumentNode dn = DocumentNodes.from(new File("src/test/resources/sample.html"));
+	public static void main(String[] args) throws ParseException {
+		// ファイルからXMLドキュメントをパースする
+		final File xml = new File(SAMPLE_XML_PATH);
+		final DocumentNode dn = DocumentNodes.from(xml);
 		
-		for (final NodeKind nk : dn.query(children)) {
+		// ドキュメントに含まれる要素（タグ）を列挙する
+		printLabel("DocumentNode.query(descendants.element())");
+		for (final NodeKind nk : dn.query(descendants.element())) {
 			System.out.println(nk);
-			for (final NodeKind nk2 : nk.query(children)) {
-				System.out.println("> " + nk2);
-			}
+		}
+		
+		// 文字シーケンスからXMLドキュメントをパースする
+		final DocumentNode dn2 = DocumentNodes.from("<sample>"
+				+ "<foo/><bar>text content</bar><baz> </baz></sample>");
+		
+		// ドキュメントの含まれる要素のうち子要素を持つものを列挙する
+		printLabel("DocumentNode.query(descendants.element().hasChildren())");
+		for (final NodeKind nk : dn2.query(descendants.element().hasChildren())) {
+			System.out.println(nk);
 		}
 	}
-
 }
