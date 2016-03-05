@@ -10,21 +10,21 @@ import org.w3c.dom.Node;
  * </p>
  */
 public class ElementListQuery extends FunctionalListQuery<Node, ElementNode> {
-	private static final Function<TreeStructuredNode, ElementNode> treeStructuredNode2ElementNode =
-		new Function<TreeStructuredNode, ElementNode>() {
+	private static final Function<TreeStructure, ElementNode> treeStructuredNode2ElementNode =
+		new Function<TreeStructure, ElementNode>() {
 		@Override
-		public ElementNode apply(TreeStructuredNode target) {
+		public ElementNode apply(TreeStructure target) {
 			return target instanceof ElementNode ? (ElementNode) target : null;
 		}
 	};
 	
 	private final FunctionalListQuery<Node, ElementNode> inner;
 	
-	ElementListQuery(final FunctionalListQuery<Node, TreeStructuredNode> relativeNodesQuery) {
+	ElementListQuery(final FunctionalListQuery<Node, TreeStructure> relativeNodesQuery) {
 		this(relativeNodesQuery, null);
 	}
 	
-	ElementListQuery(final FunctionalListQuery<Node, TreeStructuredNode> relativeNodesQuery, final String name) {
+	ElementListQuery(final FunctionalListQuery<Node, TreeStructure> relativeNodesQuery, final String name) {
 		if (name == null) {
 			// 関数を合成して新しいクエリを生成する
 			this.inner = relativeNodesQuery.and(treeStructuredNode2ElementNode);

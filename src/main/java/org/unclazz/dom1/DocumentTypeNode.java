@@ -1,5 +1,7 @@
 package org.unclazz.dom1;
 
-public interface DocumentTypeNode extends NodeKind {
+import org.w3c.dom.DocumentType;
+
+public interface DocumentTypeNode extends TreeStructure.Leaf, NodeWrapper<DocumentType> {
 
 }

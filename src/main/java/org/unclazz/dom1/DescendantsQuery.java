@@ -3,14 +3,14 @@ package org.unclazz.dom1;
 import java.util.Collections;
 import java.util.LinkedList;
 
-import org.unclazz.dom1.TreeStructuredNode.BranchNode;
+import org.unclazz.dom1.TreeStructure.Branch;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 class DescendantsQuery extends RelativeNodesQuery {
 	@Override
 	public Iterable<Node> source(NodeKind n) {
-		if (n instanceof BranchNode) {
+		if (n instanceof Branch) {
 			final LinkedList<Node> descendants = new LinkedList<Node>();
 			collectDeschendants(n.getWrappedNode(), descendants);
 			return descendants;

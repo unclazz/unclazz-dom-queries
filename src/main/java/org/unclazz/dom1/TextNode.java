@@ -5,7 +5,7 @@ import org.w3c.dom.Text;
 /**
  * {@link Text}のためのラッパー.
  */
-public interface TextNode extends NodeKind {
+public interface TextNode extends TreeStructure.Leaf, NodeWrapper<Text> {
 	/**
 	 * {@link Text#splitText(int)}を呼び出す.
 	 * @param offset オフセット

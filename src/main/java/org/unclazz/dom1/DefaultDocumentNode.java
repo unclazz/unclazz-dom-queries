@@ -3,9 +3,9 @@ package org.unclazz.dom1;
 import java.util.List;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
+import org.w3c.dom.DocumentType;
 
-class DefaultDocumentNode implements DocumentNode {
+final class DefaultDocumentNode implements DocumentNode {
 	private final Document inner;
 	
 	DefaultDocumentNode(final Document inner) {
@@ -13,7 +13,7 @@ class DefaultDocumentNode implements DocumentNode {
 	}
 
 	@Override
-	public Node getWrappedNode() {
+	public Document getWrappedNode() {
 		return inner;
 	}
 
@@ -30,11 +30,6 @@ class DefaultDocumentNode implements DocumentNode {
 	@Override
 	public List<ElementNode> getElementsByTagName(String tagName) {
 		return NodeKindUtils.wrapElements(inner.getElementsByTagName(tagName));
-	}
-
-	@Override
-	public boolean hasChildNodes() {
-		return inner.hasChildNodes();
 	}
 
 	@Override
@@ -73,58 +68,13 @@ class DefaultDocumentNode implements DocumentNode {
 	}
 
 	@Override
-	public BranchNode getParentNode() {
-		return null;
-	}
-
-	@Override
-	public List<TreeStructuredNode> getChildNodes() {
-		return NodeKindUtils.wrapTreeStructuredNodes(inner.getChildNodes());
-	}
-
-	@Override
-	public TreeStructuredNode getFirstChild() {
-		return NodeKindUtils.wrapTreeStructuredNode(inner.getFirstChild());
-	}
-
-	@Override
-	public TreeStructuredNode getLastChild() {
-		return NodeKindUtils.wrapTreeStructuredNode(inner.getLastChild());
-	}
-
-	@Override
-	public TreeStructuredNode getPreviousSibling() {
-		return null;
-	}
-
-	@Override
-	public TreeStructuredNode getNextSibling() {
-		return null;
-	}
-
-	@Override
-	public boolean hasParentNode() {
-		return false;
-	}
-
-	@Override
-	public boolean hasPreviousSibling() {
-		return false;
-	}
-
-	@Override
-	public boolean hasNextSibling() {
-		return false;
-	}
-
-	@Override
 	public boolean isLeaf() {
 		return false;
 	}
 
 	@Override
 	public boolean isBranch() {
-		return true;
+		return false;
 	}
 	
 	@Override
@@ -135,5 +85,21 @@ class DefaultDocumentNode implements DocumentNode {
 	@Override
 	public DocumentNode getOwnerDocument() {
 		return null;
+	}
+
+	@Override
+	public DocumentTypeNode getDocumentType() {
+		final DocumentType t = inner.getDoctype();
+		return t == null ? null : new DefaultDocumentTypeNode(t);
+	}
+
+	@Override
+	public boolean isRoot() {
+		return true;
+	}
+
+	@Override
+	public DocumentNode getOwnerDocument(boolean self) {
+		return self ? this : null;
 	}
 }

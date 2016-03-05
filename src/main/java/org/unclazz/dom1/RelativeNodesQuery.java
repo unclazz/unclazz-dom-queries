@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
  * インスタンスは{@link Queries#children}、{@link Queries#descendants}、
  * {@link Queries#prevs}、{@link Queries#nexts}、{@link Queries#ancestors}を通じて得られる。</p>
  */
-public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeStructuredNode> {
+public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeStructure> {
 	private final ElementListQuery tag = new ElementListQuery(this);
 
 	/**
@@ -53,9 +53,9 @@ public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeS
 	 * @return クエリ
 	 */
 	public FunctionalListQuery<Node, CommentNode> comment() {
-		return this.and(new Function<TreeStructuredNode, CommentNode>() {
+		return this.and(new Function<TreeStructure, CommentNode>() {
 			@Override
-			public CommentNode apply(TreeStructuredNode target) {
+			public CommentNode apply(TreeStructure target) {
 				return target instanceof CommentNode ? (CommentNode) target : null;
 			}
 		});
@@ -66,43 +66,24 @@ public abstract class RelativeNodesQuery extends FunctionalListQuery<Node, TreeS
 	 * @return クエリ
 	 */
 	public FunctionalListQuery<Node, CDATASectionNode> cdata() {
-		return this.and(new Function<TreeStructuredNode, CDATASectionNode>() {
+		return this.and(new Function<TreeStructure, CDATASectionNode>() {
 			@Override
-			public CDATASectionNode apply(TreeStructuredNode target) {
+			public CDATASectionNode apply(TreeStructure target) {
 				return target instanceof CDATASectionNode ? (CDATASectionNode) target : null;
 			}
 		});
 	}
 
 	@Override
-	protected Function<Node, TreeStructuredNode> function() {
+	protected Function<Node, TreeStructure> function() {
 		return node2TreeStructuredNode;
 	}
 	
-	private static final SyntheticFunction<Node, TreeStructuredNode> node2TreeStructuredNode =
-			new SyntheticFunction<Node, TreeStructuredNode>() {
+	private static final SyntheticFunction<Node, TreeStructure> node2TreeStructuredNode =
+			new SyntheticFunction<Node, TreeStructure>() {
 		@Override
-		public TreeStructuredNode apply(Node node) {
-			if (node == null) {
-				return null;
-			}
-			
-			switch (node.getNodeType()) {
-			case Node.DOCUMENT_NODE:
-				return new DefaultDocumentNode((Document) node);
-			case Node.DOCUMENT_FRAGMENT_NODE:
-				return new DefaultDocumentFragmentNode((DocumentFragment) node);
-			case Node.ELEMENT_NODE:
-				return new DefaultElementNode((Element) node);
-			case Node.TEXT_NODE:
-				return new DefaultTextNode((Text) node);
-			case Node.COMMENT_NODE:
-				return new DefaultCommentNode((Comment) node);
-			case Node.CDATA_SECTION_NODE:
-				return new DefaultCDATASectionNode((CDATASection) node);
-			default:
-				return null;
-			}
+		public TreeStructure apply(Node node) {
+			return NodeKindUtils.wrapTreeStructure(node);
 		}
 	};
 }

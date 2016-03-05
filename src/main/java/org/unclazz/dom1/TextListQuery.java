@@ -11,17 +11,17 @@ import org.w3c.dom.Node;
  * インスタンスは{@link Queries#text}を通じて得られる。</p>
  */
 public class TextListQuery extends FunctionalListQuery<Node, TextNode> {
-	private static Function<TreeStructuredNode, TextNode> treeStructureNode2TextNode =
-			new Function<TreeStructuredNode, TextNode>() {
+	private static Function<TreeStructure, TextNode> treeStructureNode2TextNode =
+			new Function<TreeStructure, TextNode>() {
 		@Override
-		public TextNode apply(TreeStructuredNode target) {
+		public TextNode apply(TreeStructure target) {
 			return target instanceof TextNode ? (TextNode) target : null;
 		}
 	};
 	
 	private final FunctionalListQuery<Node, TextNode> inner;
 	
-	TextListQuery(final FunctionalListQuery<Node, TreeStructuredNode> childrenQuery) {
+	TextListQuery(final FunctionalListQuery<Node, TreeStructure> childrenQuery) {
 		this.inner = childrenQuery.and(treeStructureNode2TextNode);
 	}
 

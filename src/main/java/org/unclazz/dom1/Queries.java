@@ -125,4 +125,6 @@ public final class Queries {
 	public static final InsertQueryFactory insert(final Query<NodeKind> newChild) {
 		return new InsertQueryFactory(newChild);
 	}
+	
+	public static final WriteToQueryFactory writeTo = new WriteToQueryFactory();
 }

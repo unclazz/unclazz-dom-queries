@@ -1,23 +1,12 @@
 package org.unclazz.dom1;
 
-import org.unclazz.dom1.TreeStructuredNode.LeafNode;
 import org.w3c.dom.Comment;
-import org.w3c.dom.Node;
 
-class DefaultCommentNode implements CommentNode, LeafNode {
+final class DefaultCommentNode extends AbstractTreeStructureLeaf implements CommentNode {
 	private final Comment inner;
 	DefaultCommentNode(final Comment inner) {
+		super(inner);
 		this.inner = inner;
-	}
-
-	@Override
-	public NodeType getNodeType() {
-		return NodeType.COMMENT;
-	}
-
-	@Override
-	public <R> R query(Query<R> q) {
-		return q.queryFrom(this);
 	}
 
 	@Override
@@ -26,57 +15,12 @@ class DefaultCommentNode implements CommentNode, LeafNode {
 	}
 
 	@Override
-	public Node getWrappedNode() {
+	public Comment getWrappedNode() {
 		return inner;
-	}
-
-	@Override
-	public boolean isLeaf() {
-		return true;
-	}
-
-	@Override
-	public boolean isBranch() {
-		return false;
-	}
-
-	@Override
-	public BranchNode getParentNode() {
-		return NodeKindUtils.wrapBranchNode(inner.getParentNode());
-	}
-
-	@Override
-	public TreeStructuredNode getPreviousSibling() {
-		return NodeKindUtils.wrapTreeStructuredNode(inner.getPreviousSibling());
-	}
-
-	@Override
-	public TreeStructuredNode getNextSibling() {
-		return NodeKindUtils.wrapTreeStructuredNode(inner.getNextSibling());
-	}
-
-	@Override
-	public boolean hasParentNode() {
-		return inner.getParentNode() != null;
-	}
-
-	@Override
-	public boolean hasPreviousSibling() {
-		return inner.getPreviousSibling() != null;
-	}
-
-	@Override
-	public boolean hasNextSibling() {
-		return inner.getNextSibling() != null;
 	}
 	
 	@Override
 	public String toString() {
 		return "CommentNode(<!-- ... -->)";
-	}
-
-	@Override
-	public DocumentNode getOwnerDocument() {
-		return new DefaultDocumentNode(inner.getOwnerDocument());
 	}
 }

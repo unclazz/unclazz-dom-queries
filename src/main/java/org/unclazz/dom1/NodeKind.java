@@ -35,4 +35,10 @@ public interface NodeKind {
 	 * @return {@link Document}をラップしたオブジェクト
 	 */
 	DocumentNode getOwnerDocument();
+	/**
+	 * {@link Node#getOwnerDocument()}を呼び出す.
+	 * @param self レシーバが{@link Document}をラップしている場合はそれを返す
+	 * @return {@link Document}をラップしたオブジェクト
+	 */
+	DocumentNode getOwnerDocument(final boolean self);
 }

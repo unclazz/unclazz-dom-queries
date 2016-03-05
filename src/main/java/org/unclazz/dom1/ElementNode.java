@@ -3,7 +3,6 @@ package org.unclazz.dom1;
 import java.util.List;
 import java.util.Map;
 
-import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -11,7 +10,7 @@ import org.w3c.dom.NamedNodeMap;
 /**
  * {@link Element}のためのラッパー.
  */
-public interface ElementNode extends NodeKind, BranchNode {
+public interface ElementNode extends TreeStructure.Branch, NodeWrapper<Element> {
 	/**
 	 * {@link Element#getTagName()}を呼び出す.
 	 * @return タグ名

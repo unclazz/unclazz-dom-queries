@@ -1,5 +1,7 @@
 package org.unclazz.dom1;
 
-public interface ProcessingInstructionNode extends NodeKind {
+import org.w3c.dom.ProcessingInstruction;
+
+public interface ProcessingInstructionNode extends TreeStructure.Leaf, NodeWrapper<ProcessingInstruction> {
 
 }

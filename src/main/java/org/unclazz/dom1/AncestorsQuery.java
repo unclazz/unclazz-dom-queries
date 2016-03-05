@@ -3,13 +3,13 @@ package org.unclazz.dom1;
 import java.util.Collections;
 import java.util.LinkedList;
 
-import org.unclazz.dom1.TreeStructuredNode.BranchNode;
+import org.unclazz.dom1.TreeStructure.Branch;
 import org.w3c.dom.Node;
 
 class AncestorsQuery extends RelativeNodesQuery {
 	@Override
 	protected Iterable<Node> source(NodeKind n) {
-		if (n instanceof BranchNode) {
+		if (n instanceof Branch) {
 			final LinkedList<Node> result = new LinkedList<Node>();
 			Node base = n.getWrappedNode();
 			Node parent = null;

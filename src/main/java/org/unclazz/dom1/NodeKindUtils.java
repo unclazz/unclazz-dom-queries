@@ -6,22 +6,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.unclazz.dom1.TreeStructuredNode.BranchNode;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
+import org.w3c.dom.Entity;
+import org.w3c.dom.EntityReference;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Notation;
+import org.w3c.dom.ProcessingInstruction;
 import org.w3c.dom.Text;
 
 final class NodeKindUtils {
 	private NodeKindUtils() {}
 	
-	static NodeKind wrapNode(final Node node) {
+	static TreeStructure wrapTreeStructure(final Node node) {
+		if (node == null) {
+			return null;
+		}
 		if (node instanceof Attr) {
 			return new DefaultAttributeNode((Attr) node);
 		} else if (node instanceof CDATASection) {
@@ -32,13 +39,25 @@ final class NodeKindUtils {
 			return new DefaultDocumentFragmentNode((DocumentFragment) node);
 		} else if (node instanceof Document) {
 			return new DefaultDocumentNode((Document) node);
+		} else if (node instanceof DocumentType) {
+			return new DefaultDocumentTypeNode((DocumentType) node);
 		} else if (node instanceof Element) {
 			return new DefaultElementNode((Element) node);
+		} else if (node instanceof Entity) {
+			return new DefaultEntityNode((Entity) node);
+		} else if (node instanceof EntityReference) {
+			return new DefaultEntityReferenceNode((EntityReference) node);
+		} else if (node instanceof Notation) {
+			return new DefaultNotationNode((Notation) node);
+		} else if (node instanceof ProcessingInstruction) {
+			return new DefaultProcessingInstructionNode((ProcessingInstruction) node);
 		} else if (node instanceof Text) {
 			return new DefaultTextNode((Text) node);
-		} else {
-			return new UnsupportedNode(node);
 		}
+		
+		throw illegalArgument("Illegal target. The instance of %s "
+				+ "cannot be wrapped with interface TreeStructure.", 
+				node.getClass().getSimpleName());
 	}
 	
 	static List<ElementNode> wrapElements(final NodeList nodeList) {
@@ -56,15 +75,15 @@ final class NodeKindUtils {
 		return result;
 	}
 	
-	static List<TreeStructuredNode> wrapTreeStructuredNodes(final NodeList nodeList) {
+	static List<TreeStructure> wrapTreeStructureList(final NodeList nodeList) {
 		final int len = nodeList.getLength();
 		if (len == 0) {
 			return Collections.emptyList();
 		}
-		final ArrayList<TreeStructuredNode> result = new ArrayList<TreeStructuredNode>(len);
+		final ArrayList<TreeStructure> result = new ArrayList<TreeStructure>(len);
 		for (int i = 0; i < len; i++) {
 			final Node n = nodeList.item(i);
-			final TreeStructuredNode tsn = wrapTreeStructuredNode(n);
+			final TreeStructure tsn = wrapTreeStructure(n);
 			if (n != null) {
 				result.add(tsn);
 			}
@@ -72,48 +91,8 @@ final class NodeKindUtils {
 		return result;
 	}
 	
-	static TreeStructuredNode wrapTreeStructuredNode(final Node node) {
-		if (node == null) {
-			return null;
-		}
-		
-		switch (node.getNodeType()) {
-		case Node.DOCUMENT_NODE:
-			return new DefaultDocumentNode((Document) node);
-		case Node.DOCUMENT_FRAGMENT_NODE:
-			return new DefaultDocumentFragmentNode((DocumentFragment) node);
-		case Node.ELEMENT_NODE:
-			return new DefaultElementNode((Element) node);
-		case Node.TEXT_NODE:
-			return new DefaultTextNode((Text) node);
-		case Node.COMMENT_NODE:
-			return new DefaultCommentNode((Comment) node);
-		case Node.CDATA_SECTION_NODE:
-			return new DefaultCDATASectionNode((CDATASection) node);
-		default:
-			throw new IllegalArgumentException(String.format(
-					"Unsupported node type (node-type = %s).",
-					NodeType.valueOf(node.getNodeType())));
-		}
-	}
-	
-	static BranchNode wrapBranchNode(final Node node) {
-		if (node == null) {
-			return null;
-		}
-		
-		switch (node.getNodeType()) {
-		case Node.DOCUMENT_NODE:
-			return new DefaultDocumentNode((Document) node);
-		case Node.DOCUMENT_FRAGMENT_NODE:
-			return new DefaultDocumentFragmentNode((DocumentFragment) node);
-		case Node.ELEMENT_NODE:
-			return new DefaultElementNode((Element) node);
-		default:
-			throw new IllegalArgumentException(String.format(
-					"Unsupported node type (node-type = %s).",
-					NodeType.valueOf(node.getNodeType())));
-		}
+	private static IllegalArgumentException illegalArgument(final String format, final Object... args) {
+		return new IllegalArgumentException(String.format(format, args));
 	}
 	
 	static Map<String, AttributeNode> wrapAttributesMap(final NamedNodeMap nnm) {

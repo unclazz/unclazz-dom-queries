@@ -1,5 +1,7 @@
 package org.unclazz.dom1;
 
-public interface EntityNode extends NodeKind {
+import org.w3c.dom.Entity;
+
+public interface EntityNode extends TreeStructure.Branch, NodeWrapper<Entity> {
 
 }

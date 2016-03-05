@@ -1,27 +1,17 @@
 package org.unclazz.dom1;
 
 import org.w3c.dom.Attr;
-import org.w3c.dom.Node;
 
-class DefaultAttributeNode implements AttributeNode {
+final class DefaultAttributeNode extends AbstractTreeStructureBranch implements AttributeNode {
 	private final Attr inner;
 	DefaultAttributeNode(final Attr inner) {
+		super(inner);
 		this.inner = inner;
 	}
 
 	@Override
-	public Node getWrappedNode() {
+	public Attr getWrappedNode() {
 		return inner;
-	}
-
-	@Override
-	public NodeType getNodeType() {
-		return NodeType.ATTRIBUTE;
-	}
-
-	@Override
-	public <R> R query(Query<R> q) {
-		return q.queryFrom(this);
 	}
 
 	@Override
@@ -49,10 +39,5 @@ class DefaultAttributeNode implements AttributeNode {
 		final StringBuilder buff = new StringBuilder();
 		buff.append("AttributeNode(").append(getName()).append('=').append(getValue()).append(')');
 		return buff.toString();
-	}
-
-	@Override
-	public DocumentNode getOwnerDocument() {
-		return new DefaultDocumentNode(inner.getOwnerDocument());
 	}
 }

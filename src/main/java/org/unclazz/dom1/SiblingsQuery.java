@@ -12,7 +12,7 @@ class SiblingsQuery extends RelativeNodesQuery {
 	
 	@Override
 	protected Iterable<Node> source(NodeKind n) {
-		if (n instanceof TreeStructuredNode) {
+		if (n instanceof TreeStructure) {
 			final LinkedList<Node> nodeList = new LinkedList<Node>();
 			collectSiblings(n.getWrappedNode(), previous, nodeList);
 			return nodeList;
