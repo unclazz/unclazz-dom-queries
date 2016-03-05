@@ -6,7 +6,7 @@
 	<artifactId>unclazz-dom-queries</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Unclazz DOM Queries</name>
-	<description></description>
+	<description>DOMの木構造を型安全かつ手軽に操作するためのライブラリ</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
