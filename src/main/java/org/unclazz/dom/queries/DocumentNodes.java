@@ -27,22 +27,25 @@ public final class DocumentNodes {
 	 * @param is 入力ストリーム
 	 * @param builder カスタマイズした{@link DocumentBuilder}インスタンス
 	 * @return XMLドキュメント
-	 * @throws SAXException XMLドキュメントの読み取り中にエラーが発生した場合
-	 * @throws IOException 入力ストリームからの読み取り中にエラーが発生した場合
+	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final InputStream is, final DocumentBuilder builder)
-			throws SAXException, IOException {
-		return new DefaultDocumentNode(builder.parse(is));
+	public static DocumentNode from(final InputStream is, final DocumentBuilder builder) throws ParseException {
+		try {
+			return new DefaultDocumentNode(builder.parse(is));
+		} catch (final SAXException e) {
+			throw new ParseException("Error has occurred. The xml content may be malformed.", e);
+		} catch (final IOException e) {
+			throw new ParseException("Error has occurred. It is caused by I/O problem.", e);
+		}
 	}
 	
 	/**
 	 * 入力ストリームからXMLドキュメントを読み取る.
 	 * @param is 入力ストリーム
 	 * @return XMLドキュメント
-	 * @throws SAXException XMLドキュメントの読み取り中にエラーが発生した場合
-	 * @throws IOException 入力ストリームからの読み取り中にエラーが発生した場合
+	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final InputStream is) throws SAXException, IOException {
+	public static DocumentNode from(final InputStream is) throws ParseException {
 		try {
 			return from(is, defaultDocumentBuilder());
 		} catch (final ParserConfigurationException e) {
@@ -55,22 +58,25 @@ public final class DocumentNodes {
 	 * @param file ファイル
 	 * @param builder カスタマイズした{@link DocumentBuilder}インスタンス
 	 * @return XMLドキュメント
-	 * @throws SAXException XMLドキュメントの読み取り中にエラーが発生した場合
-	 * @throws IOException ファイルの読み取り中にエラーが発生した場合
+	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final File file, final DocumentBuilder builder)
-			throws SAXException, IOException {
-		return new DefaultDocumentNode(builder.parse(file));
+	public static DocumentNode from(final File file, final DocumentBuilder builder) throws ParseException {
+		try {
+			return new DefaultDocumentNode(builder.parse(file));
+		} catch (SAXException e) {
+			throw new ParseException("Error has occurred. The xml content may be malformed.", e);
+		} catch (final IOException e) {
+			throw new ParseException("Error has occurred. It is caused by I/O problem.", e);
+		}
 	}
 	
 	/**
 	 * ファイルからXMLドキュメントを読み取る.
 	 * @param file ファイル
 	 * @return XMLドキュメント
-	 * @throws SAXException XMLドキュメントの読み取り中にエラーが発生した場合
-	 * @throws IOException ファイルの読み取り中にエラーが発生した場合
+	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final File file) throws SAXException, IOException {
+	public static DocumentNode from(final File file) throws ParseException {
 		try {
 			return from(file, defaultDocumentBuilder());
 		} catch (final ParserConfigurationException e) {
@@ -82,14 +88,10 @@ public final class DocumentNodes {
 	 * 文字シーケンスからXMLドキュメントを読み取る.
 	 * @param cs 文字シーケンス
 	 * @return XMLドキュメント
-	 * @throws SAXException XMLドキュメントの読み取り中にエラーが発生した場合
+	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final CharSequence cs) throws SAXException {
+	public static DocumentNode from(final CharSequence cs) throws ParseException {
 		final ByteArrayInputStream is = new ByteArrayInputStream(cs.toString().getBytes());
-		try {
-			return from(is);
-		} catch (final IOException e) {
-			throw new RuntimeException("Unexpected error has occurred.", e);
-		}
+		return from(is);
 	}
 }

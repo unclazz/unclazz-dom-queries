@@ -28,7 +28,6 @@ public class WriteToQueryFactory {
 	 * @param stream ストリーム
 	 * @param charset キャラクターセット
 	 * @return {@code null}
-	 * @throws RuntimeException 書き出し中にエラーが発生した場合
 	 */
 	public Query<Void> stream(final OutputStream stream, final Charset charset) {
 		return new Query<Void>() {
@@ -45,7 +44,6 @@ public class WriteToQueryFactory {
 	 * クエリはストリームのクローズを行わない。キャラクターセットにはutf-8を利用する。
 	 * @param stream ストリーム
 	 * @return {@code null}
-	 * @throws RuntimeException 書き出し中にエラーが発生した場合
 	 */
 	public Query<Void> stream(final OutputStream stream) {
 		return stream(stream, Charset.forName("utf-8"));
@@ -56,7 +54,6 @@ public class WriteToQueryFactory {
 	 * @param file ファイル
 	 * @param charset キャラクターセット
 	 * @return {@code null}
-	 * @throws RuntimeException 書き出し中にエラーが発生した場合
 	 */
 	public Query<Void> file(final File file, final Charset charset) {
 		return new Query<Void>() {
@@ -73,7 +70,6 @@ public class WriteToQueryFactory {
 	 * キャラクターセットにはutf-8を利用する。
 	 * @param file ファイル
 	 * @return {@code null}
-	 * @throws RuntimeException 書き出し中にエラーが発生した場合
 	 */
 	public Query<Void> file(final File file) {
 		return file(file, Charset.forName("utf-8"));
@@ -121,7 +117,7 @@ public class WriteToQueryFactory {
 				w.close();
 			}
 		} catch (final IOException e) {
-			throw new RuntimeException(e);
+			throw new QueryException("Error has occurred. It is caused by I/O problem.", e);
 		}
 	}
 	
@@ -142,7 +138,7 @@ public class WriteToQueryFactory {
 			final DOMSource src = new DOMSource(nodeKind.getWrappedNode());
 			tf.transform(src, res);
 		} catch (final Exception e) {
-			throw new RuntimeException(e);
+			throw new QueryException("Error has occurred. It is caused by I/O problem.", e);
 		}
 	}
 }
