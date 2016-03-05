@@ -16,7 +16,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * 問合せ対象のXMLノードそのものを木構造から取り除くクエリを返す.
-	 * <p>{@link targetNode.query(remove.itSelf())}というようにして利用する。</p>
+	 * <p>{@code targetNode.query(remove.itSelf())}というようにして利用する。</p>
 	 * @return クエリ
 	 */
 	public Query<NodeKind> itSelf() {
@@ -35,7 +35,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
-	 * <p>{@link parentNode.query(remove.child(oldChild))}というようにして利用する。</p>
+	 * <p>{@code parentNode.query(remove.child(oldChild))}というようにして利用する。</p>
 	 * @param oldChild 取り除かれるノード
 	 * @return 取り除かれたノード
 	 */
@@ -51,7 +51,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
-	 * <p>{@link parentNode.query(remove.child(oldChild))}というようにして利用する。</p>
+	 * <p>{@code parentNode.query(remove.child(oldChild))}というようにして利用する。</p>
 	 * @param oldChild 取り除かれるノード
 	 * @return 取り除かれたノード
 	 */
@@ -61,8 +61,8 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
-	 * <p>{@link #child(Query)}と同様に取り除く対象のノードをクエリにより指定する。</p>
-	 * <p>{@link parentNode.query(remove.all(children.element("tag")))}というようにして利用する。</p>
+	 * <p>対象のノードを直接指定する代わりに取り除く対象のノードをクエリにより指定する。</p>
+	 * <p>{@code parentNode.query(remove.all(children.element("tag")))}というようにして利用する。</p>
 	 * @param q 取り除くノードのリストを問合せるクエリ
 	 * @return 取り除かれたノードのリスト
 	 * @param <T> 取り除くノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
@@ -88,7 +88,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードをすべて取り除くクエリを返す.
-	 * <p>{@link parentNode.query(remove.all())}というようにして利用する。</p>
+	 * <p>{@code parentNode.query(remove.all())}というようにして利用する。</p>
 	 * @return 取り除かれたノードのリスト
 	 */
 	public ListQuery<NodeKind> all() {
