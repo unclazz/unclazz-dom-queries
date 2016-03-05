@@ -5,7 +5,7 @@ import org.w3c.dom.Attr;
 /**
  * {@link Attr}を内包するオブジェクト.
  */
-public interface AttributeNode extends TreeStructure.Branch, NodeWrapper<Attr> {
+public interface AttributeNode extends Branch, NodeWrapper<Attr> {
 	/**
 	 * {@link Attr#getName()}を呼び出す.
 	 * @return 属性名

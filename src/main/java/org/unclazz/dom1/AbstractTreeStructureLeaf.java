@@ -2,7 +2,7 @@ package org.unclazz.dom1;
 
 import org.w3c.dom.Node;
 
-abstract class AbstractTreeStructureLeaf implements TreeStructure.Leaf {
+abstract class AbstractTreeStructureLeaf implements Leaf {
 	private final Node inner;
 	AbstractTreeStructureLeaf(final Node inner) {
 		this.inner = inner;

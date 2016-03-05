@@ -7,6 +7,7 @@ import org.w3c.dom.Text;
 
 /**
  * 新しい{@link Element}ノードを生成するクエリ.
+ * <p>インスタンスは{@link CreateQueryFactory#element(String)}を通じて得られる。</p>
  */
 public class CreateElementQuery implements Query<NodeKind> {
 	private static Document document(Node node) {
@@ -37,6 +38,9 @@ public class CreateElementQuery implements Query<NodeKind> {
 		this.f = f;
 	}
 
+	/**
+	 * 引数で与えられたXMLノードとオーナーを同じくする新しいXMLノードを生成して返す.
+	 */
 	@Override
 	public NodeKind queryFrom(NodeKind n) {
 		return f.queryFrom(n);
@@ -108,6 +112,31 @@ public class CreateElementQuery implements Query<NodeKind> {
 				return target;
 			}
 		}));
+	}
+	
+	/**
+	 * id属性追加の指定を加えた新しいクエリを返す.
+	 * @param value id値
+	 * @return クエリ
+	 */
+	public CreateElementQuery id(final String value) {
+		return attribute("id", value);
+	}
+	
+	/**
+	 * class属性追加の指定を加えた新しいクエリを返す.
+	 * @param values class属性値
+	 * @return クエリ
+	 */
+	public CreateElementQuery className(final String... values) {
+		final StringBuilder buff = new StringBuilder();
+		for (final String clazz : values) {
+			if (buff.length() > 0) {
+				buff.append(' ');
+			}
+			buff.append(clazz);
+		}
+		return attribute("class", buff.toString());
 	}
 	
 	/**

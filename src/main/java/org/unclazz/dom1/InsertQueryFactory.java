@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
  * <p>このファクトリが生成するクエリはノードの挿入位置を絶対値や相対値で指定することができる。</p>
  * <p>とくに記載のない限り、いずれのクエリの{@link Query#queryFrom(NodeKind)}メソッドの戻り値も
  * ノードが挿入されたノード、すなわちメソッドの第1引数そのものとなる。</p>
+ * <p>インスタンスは{@link Queries#insert(Query)}などを通じて得られる。</p>
  */
 public class InsertQueryFactory {
 	private final Query<NodeKind> newChildFunction;

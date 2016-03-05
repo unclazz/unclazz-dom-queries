@@ -9,7 +9,7 @@ import org.w3c.dom.NodeList;
 class DescendantsQuery extends RelativeNodesQuery {
 	@Override
 	public Iterable<Node> source(NodeKind n) {
-		if (n instanceof TreeStructure.Leaf) {
+		if (n instanceof Leaf) {
 			return Collections.emptyList();
 		}
 		

@@ -13,7 +13,6 @@ import org.unclazz.dom1.ElementNode;
 import org.unclazz.dom1.NodeKind;
 import org.unclazz.dom1.Queries;
 import org.unclazz.dom1.TreeStructure;
-import org.unclazz.dom1.TreeStructure.Branch;
 import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;

@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
 class AncestorsQuery extends RelativeNodesQuery {
 	@Override
 	protected Iterable<Node> source(NodeKind n) {
-		if (n instanceof TreeStructure.Root) {
+		if (n instanceof Root) {
 			return Collections.emptyList();
 		}
 		final LinkedList<Node> result = new LinkedList<Node>();

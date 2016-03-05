@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-abstract class AbstractTreeStructureBranch implements TreeStructure.Branch {
+abstract class AbstractTreeStructureBranch implements Branch {
 	private final Node inner;
 	AbstractTreeStructureBranch(final Node inner) {
 		this.inner = inner;

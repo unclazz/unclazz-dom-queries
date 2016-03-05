@@ -5,4 +5,4 @@ import org.w3c.dom.Notation;
 /**
  * {@link Notation}を内包するオブジェクト.
  */
-public interface NotationNode extends TreeStructure.Leaf, NodeWrapper<Notation> {}
+public interface NotationNode extends Leaf, NodeWrapper<Notation> {}

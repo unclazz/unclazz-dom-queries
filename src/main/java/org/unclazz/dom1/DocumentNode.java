@@ -11,7 +11,7 @@ import org.w3c.dom.Text;
 /**
  * {@link Document}を内包するオブジェクト.
  */
-public interface DocumentNode extends TreeStructure.Root, NodeWrapper<Document> {
+public interface DocumentNode extends Root, NodeWrapper<Document> {
 	/**
 	 * {@link Document#createElement(String)}を呼び出す.
 	 * @param tagName タグ名

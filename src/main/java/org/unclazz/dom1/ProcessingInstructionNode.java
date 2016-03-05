@@ -6,4 +6,4 @@ import org.w3c.dom.ProcessingInstruction;
  * {@link ProcessingInstruction}を内包するオブジェクト.
  */
 public interface ProcessingInstructionNode extends 
-TreeStructure.Leaf, NodeWrapper<ProcessingInstruction> {}
+Leaf, NodeWrapper<ProcessingInstruction> {}

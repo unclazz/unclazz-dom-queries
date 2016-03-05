@@ -10,7 +10,7 @@ import org.w3c.dom.NamedNodeMap;
 /**
  * {@link Element}を内包するオブジェクト.
  */
-public interface ElementNode extends TreeStructure.Branch, NodeWrapper<Element> {
+public interface ElementNode extends Branch, NodeWrapper<Element> {
 	/**
 	 * {@link Element#getTagName()}を呼び出す.
 	 * @return タグ名

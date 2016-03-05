@@ -12,7 +12,7 @@ class SiblingsQuery extends RelativeNodesQuery {
 	
 	@Override
 	protected Iterable<Node> source(NodeKind n) {
-		if (n instanceof TreeStructure.Root) {
+		if (n instanceof Root) {
 			return Collections.emptyList();
 		}
 		final LinkedList<Node> nodeList = new LinkedList<Node>();

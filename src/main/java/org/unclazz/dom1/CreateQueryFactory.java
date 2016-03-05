@@ -9,9 +9,10 @@ import org.w3c.dom.Text;
 
 /**
  * 新しいXMLノードを生成するクエリのファクトリ.
- * <p>ファクトリの{@link Query#queryFrom(NodeKind)}メソッドの
+ * <p>クエリの{@link Query#queryFrom(NodeKind)}メソッドの
  * 第1引数のノードのオーナー・ドキュメントが新規に生成されるノードのオーナー・ドキュメントとなる。
  * またとくに記載のない限り同メソッドの戻り値はその第1引数と同じノードとなる。</p>
+ * <p>インスタンスは{@link Queries#create}を通じて得られる。</p>
  */
 public class CreateQueryFactory {
 	private static Document document(NodeKind node) {
