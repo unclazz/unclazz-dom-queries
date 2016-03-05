@@ -23,7 +23,7 @@ public class Sample {
 
 	public static void main(String[] args) throws SAXException, IOException, TransformerException {
 		final DocumentNode dn = DocumentNodes.from(new File("src/test/resources/sample.xml"));
-		final ElementNode foo1 = dn.query(descendants.element("foo").one());
+		final ElementNode foo1 = dn.query(descendants.element("*").one());
 		final ElementNode bar1 = dn.query(descendants.element("bar").one());
 		
 		foo1.query(insert(create.element("baz")

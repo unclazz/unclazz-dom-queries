@@ -1,12 +1,6 @@
 package org.unclazz.dom1;
 
-import org.w3c.dom.CDATASection;
-import org.w3c.dom.Comment;
-import org.w3c.dom.Document;
-import org.w3c.dom.DocumentFragment;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.Text;
 
 /**
  * 関連ノードの問合せを行うためのクエリ.
