@@ -16,6 +16,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * 問合せ対象のXMLノードそのものを木構造から取り除くクエリを返す.
+	 * <p>{@link targetNode.query(remove.itSelf())}というようにして利用する。</p>
 	 * @return クエリ
 	 */
 	public Query<NodeKind> itSelf() {
@@ -34,6 +35,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
+	 * <p>{@link parentNode.query(remove.child(oldChild))}というようにして利用する。</p>
 	 * @param oldChild 取り除かれるノード
 	 * @return 取り除かれたノード
 	 */
@@ -49,6 +51,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
+	 * <p>{@link parentNode.query(remove.child(oldChild))}というようにして利用する。</p>
 	 * @param oldChild 取り除かれるノード
 	 * @return 取り除かれたノード
 	 */
@@ -58,27 +61,8 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
-	 * <p>{@link #child(NodeKind)}と異なるのは取り除く対象ノードそのものを指定するのではなく、
-	 * 対象ノードを問合せるクエリを指定するという点。</p>
-	 * @param q 取り除くノードを問合せるクエリ
-	 * @return 取り除かれたノード
-	 * @param <T> 取り除くノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
-	 */
-	public<T extends NodeKind> Query<NodeKind> child(final Query<T> q) {
-		return new Query<NodeKind>() {
-			@Override
-			public NodeKind queryFrom(final NodeKind n) {
-				final T oldChild = q.queryFrom(n);
-				final Node parent = n.getWrappedNode();
-				return NodeKindUtils.wrapTreeStructure(parent
-						.removeChild(oldChild.getWrappedNode()));
-			}
-		};
-	}
-	
-	/**
-	 * XMLノードの子ノードの中から指定されたノードを取り除くクエリを返す.
 	 * <p>{@link #child(Query)}と同様に取り除く対象のノードをクエリにより指定する。</p>
+	 * <p>{@link parentNode.query(remove.all(children.element("tag")))}というようにして利用する。</p>
 	 * @param q 取り除くノードのリストを問合せるクエリ
 	 * @return 取り除かれたノードのリスト
 	 * @param <T> 取り除くノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
@@ -104,6 +88,7 @@ public class RemoveQueryFactory {
 	
 	/**
 	 * XMLノードの子ノードをすべて取り除くクエリを返す.
+	 * <p>{@link parentNode.query(remove.all())}というようにして利用する。</p>
 	 * @return 取り除かれたノードのリスト
 	 */
 	public ListQuery<NodeKind> all() {
