@@ -16,7 +16,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 /**
- * XMLドキュメントもしくはその一部分を各種出力ソースに書き出すためのクエリのファクトリ.
+ * XMLドキュメントの全体もしくは一部分を各種出力ソースに書き出すためのクエリのファクトリ.
  * <p>インスタンスは{@link Queries#writeTo}を通じて得られる。</p>
  */
 public class WriteToQueryFactory {

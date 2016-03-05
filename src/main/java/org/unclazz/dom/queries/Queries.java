@@ -104,8 +104,8 @@ public final class Queries {
 	 * @param newChild 挿入するノード
 	 * @return ファクトリ
 	 */
-	public static final InsertQueryFactory insert(final Node newChild) {
-		return new InsertQueryFactory(newChild);
+	public static final InsertQueryFactory<NodeKind> insert(final Node newChild) {
+		return new InsertQueryFactory<NodeKind>(newChild);
 	}
 	
 	/**
@@ -113,18 +113,27 @@ public final class Queries {
 	 * @param newChild 挿入するノード
 	 * @return ファクトリ
 	 */
-	public static final InsertQueryFactory insert(final NodeKind newChild) {
-		return new InsertQueryFactory(newChild.getWrappedNode());
+	public static final InsertQueryFactory<NodeKind> insert(final NodeKind newChild) {
+		return new InsertQueryFactory<NodeKind>(newChild.getWrappedNode());
 	}
 	
 	/**
 	 * XMLノードの子ノードとして別のノードを挿入するクエリのファクトリ.
 	 * @param newChild 挿入するノードを返すクエリ
 	 * @return ファクトリ
+	 * @param <T> 挿入するノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
 	 */
-	public static final InsertQueryFactory insert(final Query<NodeKind> newChild) {
-		return new InsertQueryFactory(newChild);
+	public static final<T extends NodeKind> InsertQueryFactory<T> insert(final Query<T> newChild) {
+		return new InsertQueryFactory<T>(newChild);
 	}
 	
+	/**
+	 * XMLドキュメントの全体もしくは一部分を各種出力ソースに書き出すためのクエリのファクトリ.
+	 */
 	public static final WriteToQueryFactory writeTo = new WriteToQueryFactory();
+	
+	/**
+	 * XMLドキュメントからノードを取り除くためのクエリのファクトリ.
+	 */
+	public static final RemoveQueryFactory remove = new RemoveQueryFactory();
 }

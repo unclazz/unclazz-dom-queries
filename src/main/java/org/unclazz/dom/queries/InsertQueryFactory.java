@@ -8,16 +8,18 @@ import org.w3c.dom.Node;
  * <p>とくに記載のない限り、いずれのクエリの{@link Query#queryFrom(NodeKind)}メソッドの戻り値も
  * ノードが挿入されたノード、すなわちメソッドの第1引数そのものとなる。</p>
  * <p>インスタンスは{@link Queries#insert(Query)}などを通じて得られる。</p>
+ * 
+ * @param <T> 挿入されるノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
  */
-public class InsertQueryFactory {
-	private final Query<NodeKind> newChildFunction;
+public class InsertQueryFactory<T extends NodeKind> {
+	private final Query<T> newChildFunction;
 	private final Node newChildNode;
 	
 	/**
 	 * クエリを引数にとるコンストラクタ.
 	 * @param newChild 挿入されるノードを返すクエリ
 	 */
-	InsertQueryFactory(final Query<NodeKind> newChild) {
+	InsertQueryFactory(final Query<T> newChild) {
 		this.newChildFunction = newChild;
 		this.newChildNode = null;
 	}
@@ -142,5 +144,52 @@ public class InsertQueryFactory {
 	 */
 	public Query<NodeKind> after(final NodeKind refChild) {
 		return after(refChild.getWrappedNode());
+	}
+
+	/**
+	 * 基準となるノードの前に新しいノードを挿入するクエリを返す.
+	 * <p>{@link #before(NodeKind)}と異なり引数には基準となるノードそのものを指定する代わりに、
+	 * 基準となるノードを問合せるクエリを指定する。</p>
+	 * @param q 基準となるノードを問合せるクエリ
+	 * @return クエリ
+	 * @param <U> 基準となるノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
+	 */
+	public<U extends NodeKind> Query<NodeKind> before(final Query<U> q) {
+		return new Query<NodeKind>() {
+			@Override
+			public NodeKind queryFrom(final NodeKind parent) {
+				final NodeKind refChild = q.queryFrom(parent);
+				if (refChild == null) {
+					return null;
+				}
+				final Node parentNode = parent.getWrappedNode();
+				parentNode.insertBefore(node(parent), refChild.getWrappedNode());
+				return parent;
+			}
+		};
+	}
+
+	/**
+	 * 基準となるノードの後に新しいノードを挿入するクエリを返す.
+	 * <p>{@link #after(NodeKind)}と異なり引数には基準となるノードそのものを指定する代わりに、
+	 * 基準となるノードを問合せるクエリを指定する。</p>
+	 * @param q 基準となるノードを問合せるクエリ
+	 * @return クエリ
+	 * @param <U> 基準となるノードの型（{@link NodeKind}もしくはそのサブ・インターフェース）
+	 */
+	public<U extends NodeKind> Query<NodeKind> after(final Query<U> q) {
+		return new Query<NodeKind>() {
+			@Override
+			public NodeKind queryFrom(final NodeKind parent) {
+				final NodeKind refChild = q.queryFrom(parent);
+				if (refChild == null) {
+					return null;
+				}
+				final Node parentNode = parent.getWrappedNode();
+				final Node refChildNext = refChild.getWrappedNode().getNextSibling();
+				parentNode.insertBefore(node(parent), refChildNext);
+				return parent;
+			}
+		};
 	}
 }
