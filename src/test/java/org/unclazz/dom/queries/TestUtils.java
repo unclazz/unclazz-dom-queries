@@ -10,7 +10,7 @@ public final class TestUtils {
 	
 	public static DocumentNode sampleXml() {
 		try {
-			return DocumentNodes.from(new File(SAMPLE_XML_PATH));
+			return DocumentNodes.fromFile(new File(SAMPLE_XML_PATH));
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
@@ -18,7 +18,7 @@ public final class TestUtils {
 	
 	public static DocumentNode sampleHtml() {
 		try {
-			return DocumentNodes.from(new File(SAMPLE_HTML_PATH));
+			return DocumentNodes.fromFile(new File(SAMPLE_HTML_PATH));
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}

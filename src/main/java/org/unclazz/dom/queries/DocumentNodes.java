@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
@@ -26,7 +27,7 @@ public final class DocumentNodes {
 	 * 入力ストリームからXMLドキュメントを読み取る.
 	 * @param is 入力ストリーム
 	 * @param builder カスタマイズした{@link DocumentBuilder}インスタンス
-	 * @return XMLドキュメント
+	 * @return {@link DocumentNode}インスタンス
 	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
 	public static DocumentNode from(final InputStream is, final DocumentBuilder builder) throws ParseException {
@@ -42,10 +43,10 @@ public final class DocumentNodes {
 	/**
 	 * 入力ストリームからXMLドキュメントを読み取る.
 	 * @param is 入力ストリーム
-	 * @return XMLドキュメント
+	 * @return {@link DocumentNode}インスタンス
 	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final InputStream is) throws ParseException {
+	public static DocumentNode fromStream(final InputStream is) throws ParseException {
 		try {
 			return from(is, defaultDocumentBuilder());
 		} catch (final ParserConfigurationException e) {
@@ -57,10 +58,10 @@ public final class DocumentNodes {
 	 * ファイルからXMLドキュメントを読み取る.
 	 * @param file ファイル
 	 * @param builder カスタマイズした{@link DocumentBuilder}インスタンス
-	 * @return XMLドキュメント
+	 * @return {@link DocumentNode}インスタンス
 	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final File file, final DocumentBuilder builder) throws ParseException {
+	public static DocumentNode fromFile(final File file, final DocumentBuilder builder) throws ParseException {
 		try {
 			return new DefaultDocumentNode(builder.parse(file));
 		} catch (SAXException e) {
@@ -73,12 +74,12 @@ public final class DocumentNodes {
 	/**
 	 * ファイルからXMLドキュメントを読み取る.
 	 * @param file ファイル
-	 * @return XMLドキュメント
+	 * @return {@link DocumentNode}インスタンス
 	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final File file) throws ParseException {
+	public static DocumentNode fromFile(final File file) throws ParseException {
 		try {
-			return from(file, defaultDocumentBuilder());
+			return fromFile(file, defaultDocumentBuilder());
 		} catch (final ParserConfigurationException e) {
 			throw new RuntimeException("Unexpected error has occurred.", e);
 		}
@@ -87,11 +88,20 @@ public final class DocumentNodes {
 	/**
 	 * 文字シーケンスからXMLドキュメントを読み取る.
 	 * @param cs 文字シーケンス
-	 * @return XMLドキュメント
+	 * @return {@link DocumentNode}インスタンス
 	 * @throws ParseException XMLドキュメントのパース中にエラーが発生した場合
 	 */
-	public static DocumentNode from(final CharSequence cs) throws ParseException {
+	public static DocumentNode fromCharSequence(final CharSequence cs) throws ParseException {
 		final ByteArrayInputStream is = new ByteArrayInputStream(cs.toString().getBytes());
-		return from(is);
+		return fromStream(is);
+	}
+	
+	/**
+	 * {@link Document}を内容とする{@link DocumentNode}インスタンスを返す.
+	 * @param document XMLドキュメント
+	 * @return {@link DocumentNode}インスタンス
+	 */
+	public static DocumentNode of(final Document document) {
+		return new DefaultDocumentNode(document);
 	}
 }

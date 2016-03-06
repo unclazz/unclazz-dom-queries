@@ -18,7 +18,7 @@ public class ParseXmlFile {
 	public static void main(String[] args) throws ParseException {
 		// ファイルからXMLドキュメントをパースする
 		final File xml = new File(SAMPLE_XML_PATH);
-		final DocumentNode dn = DocumentNodes.from(xml);
+		final DocumentNode dn = DocumentNodes.fromFile(xml);
 		
 		// ドキュメントに含まれる要素（タグ）を列挙する
 		printLabel("DocumentNode.query(descendants.element())");
@@ -27,7 +27,7 @@ public class ParseXmlFile {
 		}
 		
 		// 文字シーケンスからXMLドキュメントをパースする
-		final DocumentNode dn2 = DocumentNodes.from("<sample>"
+		final DocumentNode dn2 = DocumentNodes.fromCharSequence("<sample>"
 				+ "<foo/><bar>text content</bar><baz> </baz></sample>");
 		
 		// ドキュメントの含まれる要素のうち子要素を持つものを列挙する

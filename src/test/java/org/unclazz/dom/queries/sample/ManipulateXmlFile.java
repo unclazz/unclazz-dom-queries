@@ -18,7 +18,7 @@ public class ManipulateXmlFile {
 	public static void main(String[] args) throws ParseException {
 		// XML（HTML）ドキュメントをパースする
 		final File html = new File(SAMPLE_HTML_PATH);
-		final DocumentNode dn = DocumentNodes.from(html);
+		final DocumentNode dn = DocumentNodes.fromFile(html);
 		
 		// ドキュメントの子孫ノードのうちからbody要素（＝<html/>）を取得
 		final ElementNode bodyTag = dn.query(descendants.element("body").one());

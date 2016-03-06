@@ -20,7 +20,7 @@ public class DocumentNodesTest {
 		// Arrange
 		
 		// Act
-		final DocumentNode d = DocumentNodes.from("<foo></foo>");
+		final DocumentNode d = DocumentNodes.fromCharSequence("<foo></foo>");
 		
 		// Assert
 		assertThat(d, notNullValue());
@@ -31,7 +31,7 @@ public class DocumentNodesTest {
 		// Arrange
 		
 		// Act
-		final DocumentNode d = DocumentNodes.from(new File(SAMPLE_XML_PATH));
+		final DocumentNode d = DocumentNodes.fromFile(new File(SAMPLE_XML_PATH));
 		
 		// Assert
 		assertThat(d, notNullValue());

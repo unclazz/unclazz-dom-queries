@@ -51,7 +51,7 @@ XMLノードから任意の型の情報を取得したりXMLノードに対し�
 ```java
 // ファイルからXMLドキュメントをパースする
 final File xml = new File(SAMPLE_XML_PATH);
-final DocumentNode dn = DocumentNodes.from(xml);
+final DocumentNode dn = DocumentNodes.fromFile(xml);
 
 // ドキュメントに含まれる要素（タグ）を列挙する
 printLabel("DocumentNode.query(descendants.element())");
@@ -109,7 +109,7 @@ XMLドキュメントの木構造の中を探索するには`Queries`ユーテ�
 ```java
 // XML（HTML）ドキュメントをパースする
 final File html = new File(SAMPLE_HTML_PATH);
-final DocumentNode dn = DocumentNodes.from(html);
+final DocumentNode dn = DocumentNodes.fromFile(html);
 
 // ドキュメントに直属する要素（＝<html/>）を取得
 final ElementNode htmlTag = dn.getDocumentElement();
@@ -169,7 +169,7 @@ System.out.println(pTag.query(children.text().concat()));
 ```
 // XMLドキュメントをパースする
 final File xml = new File(SAMPLE_XML_PATH);
-final DocumentNode dn = DocumentNodes.from(xml);
+final DocumentNode dn = DocumentNodes.fromFile(xml);
 
 // <foo/>の1つめを取得
 final ElementNode foo0 = dn.query(descendants.element("foo").one());

@@ -18,7 +18,7 @@ public class TraverseXmlFile {
 	public static void main(String[] args) throws ParseException {
 		// XML（HTML）ドキュメントをパースする
 		final File html = new File(SAMPLE_HTML_PATH);
-		final DocumentNode dn = DocumentNodes.from(html);
+		final DocumentNode dn = DocumentNodes.fromFile(html);
 		
 		// ドキュメントに直属する要素（＝<html/>）を取得
 		final ElementNode htmlTag = dn.getDocumentElement();

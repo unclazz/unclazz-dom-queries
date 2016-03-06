@@ -18,7 +18,7 @@ public class WriteXmlFile {
 	public static void main(String[] args) throws ParseException {
 		// XMLドキュメントをパースする
 		final File xml = new File(SAMPLE_XML_PATH);
-		final DocumentNode dn = DocumentNodes.from(xml);
+		final DocumentNode dn = DocumentNodes.fromFile(xml);
 		
 		// <foo/>の1つめを取得
 		final ElementNode foo0 = dn.query(descendants.element("foo").one());
