@@ -20,11 +20,6 @@ class DefaultTextNode extends AbstractTreeStructureLeaf implements TextNode {
 	}
 
 	@Override
-	public String toString() {
-		return "TextNode()";
-	}
-
-	@Override
 	public Text getWrappedNode() {
 		return inner;
 	}

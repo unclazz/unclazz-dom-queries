@@ -4,20 +4,10 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-abstract class AbstractTreeStructureBranch implements Branch {
+abstract class AbstractTreeStructureBranch extends AbstractTreeStructure implements Branch {
 	private final Node inner;
 	AbstractTreeStructureBranch(final Node inner) {
 		this.inner = inner;
-	}
-
-	@Override
-	public final boolean isBranch() {
-		return true;
-	}
-
-	@Override
-	public final boolean isLeaf() {
-		return false;
 	}
 	
 	@Override
@@ -40,26 +30,6 @@ abstract class AbstractTreeStructureBranch implements Branch {
 		return inner.hasChildNodes();
 	}
 
-
-	@Override
-	public final NodeType getNodeType() {
-		return NodeType.valueOf(inner.getNodeType());
-	}
-
-	@Override
-	public final <R> R query(Query<R> q) {
-		return q.queryFrom(this);
-	}
-
-	@Override
-	public final DocumentNode getOwnerDocument() {
-		return new DefaultDocumentNode(inner.getOwnerDocument());
-	}
-
-	@Override
-	public final DocumentNode getOwnerDocument(boolean self) {
-		return getOwnerDocument();
-	}
 
 	@Override
 	public final TreeStructure getParentNode() {
@@ -90,12 +60,4 @@ abstract class AbstractTreeStructureBranch implements Branch {
 	public final boolean hasNextSibling() {
 		return inner.getNextSibling() != null;
 	}
-
-	@Override
-	public final boolean isRoot() {
-		return false;
-	}
-	
-	@Override
-	public abstract String toString();
 }

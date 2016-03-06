@@ -33,11 +33,4 @@ final class DefaultAttributeNode extends AbstractTreeStructureBranch implements 
 	public boolean isSpecified() {
 		return inner.getSpecified();
 	}
-	
-	@Override
-	public String toString() {
-		final StringBuilder buff = new StringBuilder();
-		buff.append("AttributeNode(").append(getName()).append('=').append(getValue()).append(')');
-		return buff.toString();
-	}
 }

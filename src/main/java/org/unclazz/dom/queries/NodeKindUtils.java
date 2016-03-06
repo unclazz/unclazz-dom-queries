@@ -60,6 +60,107 @@ final class NodeKindUtils {
 				node.getClass().getSimpleName());
 	}
 	
+	static CharSequence toCharSequence(final NodeKind node) {
+		if (node == null) {
+			return null;
+		}
+		
+		final StringBuilder sb = new StringBuilder();
+		final Node wrapped = node.getWrappedNode();
+		
+		if (node instanceof AttributeNode) {
+			sb.append("AttributeNode(").append(wrapped.getNodeName())
+			.append('=').append(escapeAndQuote(wrapped.getNodeValue())).append(')');
+			
+		} else if (node instanceof CDATASectionNode) {
+			sb.append("CDATASectionNode(")
+			.append(escapeAndQuote(wrapped.getNodeValue())).append(')');
+			
+		} else if (node instanceof CommentNode) {
+			sb.append("CommentNode(")
+			.append(escapeAndQuote(wrapped.getNodeValue())).append(')');
+			
+		} else if (node instanceof DocumentFragmentNode) {
+			sb.append("DocumentFragmentNode()");
+			
+		} else if (node instanceof DocumentNode) {
+			sb.append("DocumentNode()");
+			
+		} else if (node instanceof DocumentTypeNode) {
+			sb.append("DocumentTypeNode(").append(wrapped.getNodeName()).append(')');;
+			
+		} else if (node instanceof ElementNode) {
+			sb.append("ElementNode(<").append(wrapped.getNodeName()).append("/>)");
+			
+		} else if (node instanceof EntityNode) {
+			sb.append("EntityNode(").append(wrapped.getNodeName()).append(')');
+			
+		} else if (node instanceof EntityReferenceNode) {
+			sb.append("EntityReferenceNode(").append(wrapped.getNodeName()).append(')');
+			
+		} else if (node instanceof NotationNode) {
+			sb.append("NotationNode(").append(wrapped.getNodeName()).append(')');;
+			
+		} else if (node instanceof ProcessingInstructionNode) {
+			sb.append("ProcessingInstructionNode(").append(wrapped.getNodeName()).append(')');;
+			
+		} else if (node instanceof TextNode) {
+			sb.append("TextNode(")
+			.append(escapeAndQuote(wrapped.getNodeValue())).append(')');
+			
+		} else {
+			throw illegalArgument("Illegal target. The instance of %s "
+					+ "cannot convert into character sequence.", 
+					node.getClass().getSimpleName());
+		}
+		
+		return sb;
+	}
+	
+	private static CharSequence escapeAndQuote(final CharSequence original) {
+		final StringBuilder raw = new StringBuilder(original);
+		final int max = 12;
+		if (max < original.length()) {
+			raw.setLength(max - 3);
+			raw.append("...");
+		}
+		
+		final int len = raw.length();
+		final StringBuilder sb = new StringBuilder().append('"');
+		for (int i = 0; i < len; i ++) {
+			final char c = raw.charAt(i);
+			switch (c) {
+			case '\b':
+				sb.append("\\b");
+				break;
+			case '\t':
+				sb.append("\\t");
+				break;
+			case '\n':
+				sb.append("\\n");
+				break;
+			case '\f':
+				sb.append("\\f");
+				break;
+			case '\r':
+				sb.append("\\r");
+				break;
+			case '"':
+				sb.append("\\\"");
+				break;
+			case '\'':
+				sb.append("\\'");
+				break;
+			case '\\':
+				sb.append("\\\\");
+				break;
+			default:
+				sb.append(c);
+			}
+		}
+		return sb.append('"');
+	}
+	
 	static List<ElementNode> wrapElements(final NodeList nodeList) {
 		final int len = nodeList.getLength();
 		if (len == 0) {

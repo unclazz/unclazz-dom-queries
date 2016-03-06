@@ -8,11 +8,6 @@ final class DefaultEntityNode extends AbstractTreeStructureBranch implements Ent
 		super(inner);
 		this.inner = inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "EntityNode()";
-	}
 
 	@Override
 	public Entity getWrappedNode() {

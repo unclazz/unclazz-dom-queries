@@ -8,11 +8,6 @@ final class DefaultNotationNode extends AbstractTreeStructureLeaf implements Not
 		super(inner);
 		this.inner = inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "NotationNode()";
-	}
 
 	@Override
 	public Notation getWrappedNode() {

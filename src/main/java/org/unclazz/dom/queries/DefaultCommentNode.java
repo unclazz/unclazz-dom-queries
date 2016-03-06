@@ -18,9 +18,4 @@ final class DefaultCommentNode extends AbstractTreeStructureLeaf implements Comm
 	public Comment getWrappedNode() {
 		return inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "CommentNode(<!-- ... -->)";
-	}
 }

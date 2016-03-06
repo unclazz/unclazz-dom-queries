@@ -8,11 +8,6 @@ final class DefaultProcessingInstructionNode extends AbstractTreeStructureLeaf i
 		super(inner);
 		this.inner = inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "ProcessingInstructionNode()";
-	}
 
 	@Override
 	public ProcessingInstruction getWrappedNode() {

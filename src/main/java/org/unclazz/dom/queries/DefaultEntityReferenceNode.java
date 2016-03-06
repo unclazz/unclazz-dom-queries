@@ -8,11 +8,6 @@ final class DefaultEntityReferenceNode extends AbstractTreeStructureBranch imple
 		super(inner);
 		this.inner = inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "EntityReferenceNode()";
-	}
 
 	@Override
 	public EntityReference getWrappedNode() {

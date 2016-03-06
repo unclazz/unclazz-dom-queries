@@ -12,9 +12,4 @@ final class DefaultDocumentFragmentNode extends AbstractTreeStructureBranch impl
 	public DocumentFragment getWrappedNode() {
 		return inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "DocumentFragment()";
-	}
 }

@@ -8,11 +8,6 @@ final class DefaultDocumentTypeNode extends AbstractTreeStructureLeaf implements
 		super(inner);
 		this.inner = inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "DocumentTypeNode()";
-	}
 
 	@Override
 	public DocumentType getWrappedNode() {

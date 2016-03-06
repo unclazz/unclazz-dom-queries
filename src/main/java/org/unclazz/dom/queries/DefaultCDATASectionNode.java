@@ -18,9 +18,4 @@ final class DefaultCDATASectionNode extends AbstractTreeStructureLeaf implements
 	public CDATASection getWrappedNode() {
 		return inner;
 	}
-	
-	@Override
-	public String toString() {
-		return "CDATASectionNode(<![CDATA[ ... ]])";
-	}
 }
