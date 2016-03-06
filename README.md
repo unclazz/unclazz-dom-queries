@@ -65,11 +65,11 @@ for (final NodeKind nk : dn.query(descendants.element())) {
 ```
 DocumentNode.query(descendants.element())
 -----------------------------------------
-ElementNode(<sample>)
-ElementNode(<foo>)
-ElementNode(<foo>)
-ElementNode(<bar>)
-ElementNode(<bar>)
+ElementNode(<sample/>)
+ElementNode(<foo/>)
+ElementNode(<foo/>)
+ElementNode(<bar/>)
+ElementNode(<bar/>)
 ```
 
 ## XML木構造の探索
@@ -141,7 +141,7 @@ ElementNode.query(descendants.element("li")), then ElementNode.query(text)
 ## XMLドキュメントの変更
 
 Unclazz DOM QueriesではXMLドキュメントの木構造への変更オペレーションもまたクエリとして実装されています。
-ノードの新規作成には`Queries.create`を、またノードの木構造への挿入には`Queries.insert(...)`を利用できます：
+ノードの新規作成には`Queries.create`を、またノードの木構造への挿入には`Queries.insert(...)`、ノードの削除には`Queries.remove`を利用できます：
 
 ```java
 // ドキュメントの子孫ノードのうちからbody要素（＝<html/>）を取得
