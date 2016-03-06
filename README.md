@@ -65,11 +65,11 @@ for (final NodeKind nk : dn.query(descendants.element())) {
 ```
 DocumentNode.query(descendants.element())
 -----------------------------------------
-ElementNode(<sample>)
-ElementNode(<foo>)
-ElementNode(<foo>)
-ElementNode(<bar>)
-ElementNode(<bar>)
+ElementNode(<sample/>)
+ElementNode(<foo/>)
+ElementNode(<foo/>)
+ElementNode(<bar/>)
+ElementNode(<bar/>)
 ```
 
 ## XML木構造の探索
