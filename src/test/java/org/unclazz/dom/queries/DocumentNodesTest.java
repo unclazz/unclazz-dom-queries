@@ -6,12 +6,14 @@ import static org.unclazz.dom.queries.TestUtils.*;
 
 import java.io.File;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class DocumentNodesTest {
 	
-	public static final ExpectedException exception = ExpectedException.none();
+	@Rule
+	public final ExpectedException exception = ExpectedException.none();
 
 	@Test
 	public void from_whenValidXmlSequenceSpecified_returnsDocumentNodeInstance() throws ParseException {
