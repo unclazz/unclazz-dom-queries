@@ -192,7 +192,7 @@ System.out.println(pTag.query(children.text().concat()));
 
 最後に、Unclazz DOM QueriesではXMLドキュメントの全体や一部分を文字シーケンス化したり、ファイルに書きだしたりするのにもクエリを利用します：
 
-```
+```java
 // XMLドキュメントをパースする
 final File xml = new File(SAMPLE_XML_PATH);
 final DocumentNode dn = DocumentNodes.fromFile(xml);
