@@ -25,6 +25,32 @@ XMLノードから任意の型の情報を取得したりXMLノードに対し�
 * `NodeKind`はDOMの`Node`に対応するオブジェクトですがそのメンバーは大幅に切詰められています。ライブラリには`Document`や`Element`などに対応するオブジェクトも用意されていますが、いずれも可能な限りメンバーを削っています。これは概念的な重みを低減させるためです。
 * `Function<A,B>`は関数をあらわすインターフェースで、XMLノードの探索と型変換とフィルタリングのために利用されます。定義済みクエリの多くはこの関数オブジェクトを内部的に利用しています。
 
+## 使用方法
+
+まず[リリース一覧](https://github.com/unclazz/unclazz-dom-queries/releases)からjarファイルを取得してプロジェクトのビルドパスに含めてください。もしあなたのプロジェクトがMavenを使用しているのであれば、DOM QueriesのアーティファクトはGithub上の[Mavenリポジトリ](https://github.com/unclazz/mvn-repo)から取得できます。そのための設定は`pom.xml`に以下のコード断片を追加するだけです：
+
+```xml
+<repositories>
+	...
+	<repository>
+		<id>unclazz-mvn-repo</id>
+		<url>https://raw.github.com/unclazz/mvn-repo/master/</url>
+		<snapshots>
+			<enabled>true</enabled>
+			<updatePolicy>always</updatePolicy>
+		</snapshots>
+	</repository>
+</repositories>
+<dependencies>
+	...
+	<dependency>
+		<groupId>org.unclazz.dom.queries</groupId>
+		<artifactId>unclazz-dom-queries</artifactId>
+		<version>1.0.0-RELEASE</version>
+	</dependency>
+<dependencies>
+```
+
 ## XMLドキュメントの読み込み
 
 例えば次のようなXMLファイルがあったとします：

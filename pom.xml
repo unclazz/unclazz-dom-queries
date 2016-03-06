@@ -4,7 +4,7 @@
 
 	<groupId>org.unclazz.dom.queries</groupId>
 	<artifactId>unclazz-dom-queries</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-RELEASE</version>
 	<name>Unclazz DOM Queries</name>
 	<description>DOMの木構造を型安全かつ手軽に操作するためのライブラリ</description>
 
@@ -16,8 +16,8 @@
 		[[ GitHub Maven Pluginsのための設定 ]]
 		このプロジェクトのMavenリポジトリの構築先であるGithubサーバを指定する.
 		settings.xmlでサーバ情報（<server><id>github</id>...</server>）が定義されていることが前提.
-		<github.global.server>github</github.global.server>
 		-->
+		<github.global.server>github</github.global.server>
 	</properties>
 
 	<!--
@@ -48,6 +48,7 @@
 	<!--
 	[[ GitHub Maven Pluginsのための設定 ]]
 	アーティファクトをGithub上のMavenリポジトリにアップロードするまえの一時的な格納先の指定.
+	-->
 	<distributionManagement>
 		<repository>
 			<id>internal.repo</id>
@@ -55,7 +56,6 @@
 			<url>file://${project.build.directory}/mvn-repo</url>
 		</repository>
 	</distributionManagement>
-	-->
 
 	<build>
 		<plugins>
@@ -88,6 +88,7 @@
 			<!--
 			[[ Maven Deploy Pluginのための設定 ]]
 			Github上のMavenリポジトリにアップロードするまえの一時的な格納先にアーティファクトをデプロイするよう指定.
+			-->
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.8.2</version>
@@ -95,7 +96,6 @@
 					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
 				</configuration>
 			</plugin>
-			-->
 			<!--
 			[[ GitHub Maven Pluginsのための設定 ]]
 			messageタグでGitコミットを行うときのコミット・メッセージを指定する.
@@ -105,6 +105,7 @@
 			branchタグでMavenリポジトリとして利用するブランチ名を指定する（存在しなければ自動生成される）.
 			repositoryNameタグでリポジトリ名を指定する.
 			repositoryOwnerタグでリポジトリの所有者を指定する.
+			-->
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
@@ -130,7 +131,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			-->
 		</plugins>
 	</build>
 </project>
